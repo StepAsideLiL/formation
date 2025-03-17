@@ -1,0 +1,21 @@
+services:
+  crdb:
+    image: cockroachdb/cockroach:v24.2.2
+    command: start-single-node --insecure
+    ports:
+      - "26257:26257"
+      - "8080:8080"
+    volumes:
+      - crdb:/cockroach/cockroach-data
+    environment:
+      - COCKROACH_DATABASE=formation
+      - COCKROACH_USER=root
+
+  mailhog:
+    image: "mailhog/mailhog:latest"
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+volumes:
+  crdb:
