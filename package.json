@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "concurrently --kill-others \"prisma generate && next dev --turbopack\" \"prisma studio --browser none\" \"docker compose up\"",
+    "dev:next": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
