@@ -1,6 +1,11 @@
 import { atomWithStorage } from "jotai/utils";
 
-type TFieldsType = "input" | "textarea" | "select" | "radio" | "checkbox";
+export type TFieldsType =
+  | "input"
+  | "textarea"
+  | "select"
+  | "radio"
+  | "checkbox";
 
 export type TFormObj = {
   id: string;
