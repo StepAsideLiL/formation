@@ -8,7 +8,7 @@ export default function FormFields() {
   const [formObj] = useAtom(atoms.formObjAtom);
 
   return (
-    <section>
+    <section className="w-3xl space-y-5">
       {formObj.map((field) => (
         <FieldOptionsForm key={field.id} options={field} />
       ))}
