@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -9,6 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
 import Icons from "@/lib/icons";
 import atoms, { TFieldsType, TFormObj } from "@/lib/store";
 import { useAtom } from "jotai";
@@ -64,10 +66,16 @@ export default function FieldOptionsForm({ options }: { options: TFormObj }) {
   }
 
   function updateFieldLabel(value: TFormObj["label"]) {
-    console.log(value);
-
     const newFormObj = formObj.map((field) =>
       field.id === options.id ? { ...options, label: value } : field,
+    );
+
+    setFormObj(newFormObj);
+  }
+
+  function updateFieldRequired(checked: boolean) {
+    const newFormObj = formObj.map((field) =>
+      field.id === options.id ? { ...options, required: checked } : field,
     );
 
     setFormObj(newFormObj);
@@ -84,22 +92,38 @@ export default function FieldOptionsForm({ options }: { options: TFormObj }) {
       <div className="flex items-center justify-between border-b p-1">
         <span>Field Id: {options.id}</span>
 
-        <Button
-          variant={"outline"}
-          size={"icon"}
-          className="size-4 cursor-pointer"
-          asChild
-          onClick={() => {
-            deleteField(options.id);
-          }}
-        >
-          <span className="p-3">
-            <Icons.Trash className="text-destructive" />
-          </span>
-        </Button>
+        <div className="flex items-center gap-2">
+          <div className="flex items-center space-x-2">
+            <Switch
+              id="is-required"
+              className="cursor-pointer"
+              checked={options.required}
+              onCheckedChange={(checked: TFormObj["required"]) =>
+                updateFieldRequired(checked)
+              }
+            />
+            <Label htmlFor="is-required" className="cursor-pointer font-normal">
+              Field Required
+            </Label>
+          </div>
+
+          <Button
+            variant={"outline"}
+            size={"icon"}
+            className="size-4 cursor-pointer"
+            asChild
+            onClick={() => {
+              deleteField(options.id);
+            }}
+          >
+            <span className="p-3">
+              <Icons.Trash className="text-destructive" />
+            </span>
+          </Button>
+        </div>
       </div>
 
-      <div className="p-1">
+      <div className="space-y-2 p-1">
         <div className="flex items-center gap-3">
           <Select
             value={options.type}
