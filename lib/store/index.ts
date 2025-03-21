@@ -10,7 +10,7 @@ export type TFieldsType =
 export type TFormObj = {
   id: string;
   label: string;
-  type: TFieldsType;
+  fieldType: TFieldsType;
   required: boolean;
 };
 

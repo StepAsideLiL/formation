@@ -17,7 +17,7 @@ export default function AddFieldBtn() {
           {
             id: fieldId(),
             label: "",
-            type: "input",
+            fieldType: "input",
             required: true,
           },
         ])

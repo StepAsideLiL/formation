@@ -124,11 +124,11 @@ export default function FieldOptionsForm({ options }: { options: TFormObj }) {
       <div className="space-y-2 p-1">
         <div className="flex items-center gap-3">
           <Select
-            value={options.type}
+            value={options.fieldType}
             onValueChange={(value: TFieldsType) => updateFieldType(value)}
           >
             <SelectTrigger className="w-64 cursor-pointer">
-              <SelectValue placeholder={options.type} />
+              <SelectValue placeholder={options.fieldType} />
             </SelectTrigger>
 
             <SelectContent>
