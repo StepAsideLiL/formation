@@ -18,8 +18,6 @@ export default function AddFieldBtn() {
             id: fieldId(),
             label: "",
             type: "input",
-            placeholder: "",
-            default: "",
             required: true,
           },
         ])

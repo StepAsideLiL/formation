@@ -19,8 +19,6 @@ import { useAtom } from "jotai";
  * selection for field type
  * input - label
  * checkbox - required
- * input - placeholder
- * input - default
  */
 
 const typeOptions: TFieldsType[] = [
