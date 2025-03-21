@@ -11,9 +11,7 @@ export type TFormObj = {
   id: string;
   label: string;
   type: TFieldsType;
-  placeholder: string;
   required: boolean;
-  default: string;
 };
 
 const formObjAtom = atomWithStorage<TFormObj[]>("formObj", []);
