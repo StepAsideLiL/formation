@@ -123,30 +123,32 @@ export default function FieldOptionsForm({ options }: { options: TFormObj }) {
 
       <div className="space-y-2 p-1">
         <div className="flex items-center gap-3">
-          <Select
-            value={options.fieldType}
-            onValueChange={(value: TFieldsType) => updateFieldType(value)}
-          >
-            <SelectTrigger className="w-64 cursor-pointer">
-              <SelectValue placeholder={"Select a field type"} />
-            </SelectTrigger>
+          <div className="w-56">
+            <Select
+              value={options.fieldType}
+              onValueChange={(value: TFieldsType) => updateFieldType(value)}
+            >
+              <SelectTrigger className="w-56 cursor-pointer">
+                <SelectValue placeholder={"Select a field type"} />
+              </SelectTrigger>
 
-            <SelectContent>
-              {typeOptions.map((type) => {
-                const Icon = fieldTypesMeta[type].icon;
+              <SelectContent>
+                {typeOptions.map((type) => {
+                  const Icon = fieldTypesMeta[type].icon;
 
-                return (
-                  <SelectItem
-                    key={type}
-                    className="cursor-pointer items-center"
-                    value={type}
-                  >
-                    <Icon /> <span>{fieldTypesMeta[type].name}</span>
-                  </SelectItem>
-                );
-              })}
-            </SelectContent>
-          </Select>
+                  return (
+                    <SelectItem
+                      key={type}
+                      className="cursor-pointer items-center"
+                      value={type}
+                    >
+                      <Icon /> <span>{fieldTypesMeta[type].name}</span>
+                    </SelectItem>
+                  );
+                })}
+              </SelectContent>
+            </Select>
+          </div>
 
           <Input
             type="text"
