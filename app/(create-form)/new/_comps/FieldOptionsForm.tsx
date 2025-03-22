@@ -57,7 +57,7 @@ export default function FieldOptionsForm({ options }: { options: TFormObj }) {
 
   function updateFieldType(value: TFieldsType) {
     const newFormObj = formObj.map((field) =>
-      field.id === options.id ? { ...options, type: value } : field,
+      field.id === options.id ? { ...options, fieldType: value } : field,
     );
 
     setFormObj(newFormObj);
@@ -128,7 +128,7 @@ export default function FieldOptionsForm({ options }: { options: TFormObj }) {
             onValueChange={(value: TFieldsType) => updateFieldType(value)}
           >
             <SelectTrigger className="w-64 cursor-pointer">
-              <SelectValue placeholder={options.fieldType} />
+              <SelectValue placeholder={"Select a field type"} />
             </SelectTrigger>
 
             <SelectContent>
