@@ -14,6 +14,7 @@ import { Switch } from "@/components/ui/switch";
 import Icons from "@/lib/icons";
 import atoms, { TFieldsType, TFormObj } from "@/lib/store";
 import { useAtom } from "jotai";
+import InputMetadateForm from "./InputMetadateForm";
 
 /**
  * selection for field type
@@ -159,6 +160,10 @@ export default function FieldOptionsForm({ options }: { options: TFormObj }) {
             }
           />
         </div>
+
+        {options.fieldType === "input" && (
+          <InputMetadateForm options={options} />
+        )}
       </div>
     </div>
   );

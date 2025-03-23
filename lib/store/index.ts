@@ -7,11 +7,17 @@ export type TFieldsType =
   | "radio"
   | "checkbox";
 
-export type TFormObj = {
+export type TInputMetadata = {
+  placeholder?: string;
+  description?: string;
+};
+
+export type TFormObj<T = TInputMetadata> = {
   id: string;
   label: string;
   fieldType: TFieldsType;
   required: boolean;
+  metadata?: T;
 };
 
 const formObjAtom = atomWithStorage<TFormObj[]>("formObj", []);
