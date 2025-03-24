@@ -1,14 +1,12 @@
-import AddFieldBtn from "./_comps/AddFieldBtn";
-import FormFields from "./_comps/FormFields";
+import FormEditor from "./_comps/FormEditor";
+import FormPreview from "./_comps/FormPreview";
 
 export default function Page() {
   return (
-    <main className="mx-auto w-5xl space-y-10 p-5">
-      <FormFields />
+    <main className="mx-auto flex w-5xl items-start gap-5 p-5">
+      <FormEditor />
 
-      <div className="mx-auto w-fit">
-        <AddFieldBtn />
-      </div>
+      <FormPreview />
     </main>
   );
 }
