@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator";
 import atoms, { TFormObj, TInputMetadata } from "@/lib/store";
 import { useAtom } from "jotai";
 
-export default function InputMetadateForm({ options }: { options: TFormObj }) {
+export function InputMetadateForm({ options }: { options: TFormObj }) {
   const metadata = options?.metadata as TInputMetadata;
   const [formObj, setFormObj] = useAtom(atoms.formObjAtom);
 

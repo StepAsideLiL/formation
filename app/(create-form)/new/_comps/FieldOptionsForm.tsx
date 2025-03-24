@@ -14,7 +14,7 @@ import { Switch } from "@/components/ui/switch";
 import Icons from "@/lib/icons";
 import atoms, { TFieldsType, TFormObj } from "@/lib/store";
 import { useAtom } from "jotai";
-import InputMetadateForm from "./InputMetadateForm";
+import { InputMetadateForm } from "./MetadateForm";
 
 /**
  * selection for field type
