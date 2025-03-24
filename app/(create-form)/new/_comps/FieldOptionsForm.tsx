@@ -161,7 +161,8 @@ export default function FieldOptionsForm({ options }: { options: TFormObj }) {
           />
         </div>
 
-        {options.fieldType === "input" && (
+        {(options.fieldType === "input" ||
+          options.fieldType === "textarea") && (
           <InputMetadateForm options={options} />
         )}
       </div>
