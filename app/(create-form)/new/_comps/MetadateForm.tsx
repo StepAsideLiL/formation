@@ -26,7 +26,7 @@ export function InputMetadateForm({ options }: { options: TFormObj }) {
 
       <Input
         type="text"
-        placeholder="Placeholder Text for One Line Text Field"
+        placeholder="Placeholder Text"
         value={metadata?.placeholder}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
           updateMetadata({
