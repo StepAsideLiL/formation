@@ -7,6 +7,7 @@ import atoms, { TFormObj, TInputMetadata, TSelectMetadata } from "@/lib/store";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useAtom } from "jotai";
 import { Label } from "@/components/ui/label";
+import Icons from "@/lib/icons";
 
 export function InputMetadateForm({ options }: { options: TFormObj }) {
   const metadata = options?.metadata as TInputMetadata;
@@ -99,24 +100,43 @@ export function SelectMetadateForm({ options }: { options: TFormObj }) {
       <div className="flex w-full gap-2">
         <div className="w-1/2 space-y-1">
           <h2 className="text-xs">Options</h2>
-          {metadata.options?.map((option, i) => (
-            <Input
-              key={i}
-              placeholder="Option"
-              className="w-full"
-              value={option}
-              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-                updateMetadata({
-                  placeholder: metadata?.placeholder || "",
-                  description: metadata?.description || "",
-                  options: metadata?.options?.map((option, j) =>
-                    i === j ? event.target.value : option,
-                  ),
-                  defaultOption: metadata?.defaultOption || "",
-                })
-              }
-            />
-          ))}
+          {metadata.options?.map((option, i) => {
+            return (
+              <div key={i} className="relative">
+                <Input
+                  placeholder="Option"
+                  className="w-full"
+                  value={option}
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                    updateMetadata({
+                      placeholder: metadata?.placeholder || "",
+                      description: metadata?.description || "",
+                      options: metadata?.options?.map((option, j) =>
+                        i === j ? event.target.value : option,
+                      ),
+                      defaultOption: metadata?.defaultOption || "",
+                    })
+                  }
+                />
+                <Button
+                  variant={"ghost"}
+                  size={"icon"}
+                  className="text-destructive size-4 cursor-pointer"
+                  asChild
+                  onClick={() =>
+                    updateMetadata({
+                      placeholder: metadata?.placeholder || "",
+                      description: metadata?.description || "",
+                      options: metadata?.options?.filter((_, j) => i !== j),
+                      defaultOption: metadata?.defaultOption || "",
+                    })
+                  }
+                >
+                  <Icons.Trash className="absolute top-2 right-2" />
+                </Button>
+              </div>
+            );
+          })}
           <Button
             variant={"outline"}
             className="cursor-pointer"
