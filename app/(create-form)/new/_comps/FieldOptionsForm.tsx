@@ -40,7 +40,7 @@ const fieldTypesMeta = {
     icon: Icons.Paragraph,
   },
   select: {
-    name: "Downdown Optoins",
+    name: "Dropdown Options",
     icon: Icons.Select,
   },
   radio: {
