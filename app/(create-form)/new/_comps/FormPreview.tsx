@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  CheckboxField,
   InputField,
   SelectField,
   TextareaField,
@@ -22,6 +23,10 @@ export default function FormPreview() {
 
     if (field.fieldType === "select") {
       return <SelectField key={field.id} field={field} />;
+    }
+
+    if (field.fieldType === "checkbox") {
+      return <CheckboxField key={field.id} field={field} />;
     }
   });
 }

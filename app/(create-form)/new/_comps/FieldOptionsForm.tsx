@@ -14,7 +14,11 @@ import { Switch } from "@/components/ui/switch";
 import Icons from "@/lib/icons";
 import atoms, { TFieldsType, TFormObj } from "@/lib/store";
 import { useAtom } from "jotai";
-import { InputMetadateForm, SelectMetadateForm } from "./MetadateForm";
+import {
+  CheckboxMetadataForm,
+  InputMetadateForm,
+  SelectMetadateForm,
+} from "./MetadateForm";
 
 /**
  * selection for field type
@@ -168,6 +172,10 @@ export default function FieldOptionsForm({ options }: { options: TFormObj }) {
 
         {options.fieldType === "select" && (
           <SelectMetadateForm options={options} />
+        )}
+
+        {options.fieldType === "checkbox" && (
+          <CheckboxMetadataForm options={options} />
         )}
       </div>
     </div>

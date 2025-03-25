@@ -19,13 +19,19 @@ export type TSelectMetadata = {
   defaultOption?: string;
 };
 
-export type TFormObj<T = TInputMetadata | TSelectMetadata> = {
-  id: string;
-  label: string;
-  fieldType: TFieldsType;
-  required: boolean;
-  metadata?: T;
+export type TCheckboxMetadata = {
+  description?: string;
+  options?: string[];
 };
+
+export type TFormObj<T = TInputMetadata | TSelectMetadata | TCheckboxMetadata> =
+  {
+    id: string;
+    label: string;
+    fieldType: TFieldsType;
+    required: boolean;
+    metadata?: T;
+  };
 
 const formObjAtom = atomWithStorage<TFormObj[]>("formObj", []);
 

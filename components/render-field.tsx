@@ -1,6 +1,11 @@
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { TFormObj, TInputMetadata, TSelectMetadata } from "@/lib/store";
+import {
+  TCheckboxMetadata,
+  TFormObj,
+  TInputMetadata,
+  TSelectMetadata,
+} from "@/lib/store";
 import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
@@ -9,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Checkbox } from "./ui/checkbox";
 
 export function InputField({ field }: { field: TFormObj }) {
   const metadata = field.metadata as TInputMetadata;
@@ -73,6 +79,34 @@ export function SelectField({ field }: { field: TFormObj }) {
         </SelectContent>
       </Select>
       <p className="text-xs">{metadata.description}</p>
+    </div>
+  );
+}
+
+export function CheckboxField({ field }: { field: TFormObj }) {
+  const metadata = field.metadata as TCheckboxMetadata;
+
+  return (
+    <div>
+      <div className="p-2">
+        <Label htmlFor={field.id}>
+          {field.label}
+          {field.required ? <span className="text-destructive">*</span> : ""}
+        </Label>
+        {(metadata?.description || metadata?.description?.length !== 0) && (
+          <p className="text-xs">{metadata.description}</p>
+        )}
+      </div>
+      <div className="space-y-1">
+        {metadata.options?.map((option, i) => (
+          <div key={i} className="flex items-center gap-1">
+            <Checkbox id={`${i}`} className="cursor-pointer" />
+            <Label htmlFor={`${i}`} className="cursor-pointer font-normal">
+              {option}
+            </Label>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

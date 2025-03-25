@@ -3,7 +3,12 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import atoms, { TFormObj, TInputMetadata, TSelectMetadata } from "@/lib/store";
+import atoms, {
+  TCheckboxMetadata,
+  TFormObj,
+  TInputMetadata,
+  TSelectMetadata,
+} from "@/lib/store";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useAtom } from "jotai";
 import { Label } from "@/components/ui/label";
@@ -54,7 +59,6 @@ export function InputMetadateForm({ options }: { options: TFormObj }) {
 
 export function SelectMetadateForm({ options }: { options: TFormObj }) {
   const metadata = options?.metadata as TSelectMetadata;
-
   const [formObj, setFormObj] = useAtom(atoms.formObjAtom);
 
   function updateMetadata(metadata: TSelectMetadata) {
@@ -182,6 +186,86 @@ export function SelectMetadateForm({ options }: { options: TFormObj }) {
             ))}
           </RadioGroup>
         </div>
+      </div>
+    </div>
+  );
+}
+
+export function CheckboxMetadataForm({ options }: { options: TFormObj }) {
+  const metadata = options?.metadata as TCheckboxMetadata;
+  const [formObj, setFormObj] = useAtom(atoms.formObjAtom);
+
+  function updateMetadata(metadata: TCheckboxMetadata) {
+    const newFormObj = formObj.map((field) =>
+      field.id === options.id ? { ...options, metadata: metadata } : field,
+    );
+
+    setFormObj(newFormObj);
+  }
+
+  return (
+    <div className="space-y-2">
+      <Separator />
+
+      <Input
+        type="text"
+        placeholder="Field Description"
+        value={metadata?.description}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          updateMetadata({
+            description: event.target.value || "",
+            options: metadata?.options || [],
+          })
+        }
+      />
+
+      <div className="space-y-1">
+        <h2 className="text-xs">Checkbox Options</h2>
+        {metadata.options?.map((option, i) => {
+          return (
+            <div key={i} className="relative">
+              <Input
+                placeholder="Option"
+                className="w-full"
+                value={option}
+                onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                  updateMetadata({
+                    description: metadata?.description || "",
+                    options: metadata?.options?.map((option, j) =>
+                      i === j ? event.target.value : option,
+                    ),
+                  })
+                }
+              />
+              <Button
+                variant={"ghost"}
+                size={"icon"}
+                className="text-destructive size-4 cursor-pointer"
+                asChild
+                onClick={() =>
+                  updateMetadata({
+                    description: metadata?.description || "",
+                    options: metadata?.options?.filter((_, j) => i !== j),
+                  })
+                }
+              >
+                <Icons.Trash className="absolute top-2 right-2" />
+              </Button>
+            </div>
+          );
+        })}
+        <Button
+          variant={"outline"}
+          className="cursor-pointer"
+          onClick={() => {
+            updateMetadata({
+              description: metadata?.description || "",
+              options: [...(metadata?.options || []), "New Option"],
+            });
+          }}
+        >
+          Add Option
+        </Button>
       </div>
     </div>
   );
