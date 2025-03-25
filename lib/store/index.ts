@@ -12,7 +12,14 @@ export type TInputMetadata = {
   description?: string;
 };
 
-export type TFormObj<T = TInputMetadata> = {
+export type TSelectMetadata = {
+  placeholder?: string;
+  description?: string;
+  options?: string[];
+  defaultOption?: string;
+};
+
+export type TFormObj<T = TInputMetadata | TSelectMetadata> = {
   id: string;
   label: string;
   fieldType: TFieldsType;

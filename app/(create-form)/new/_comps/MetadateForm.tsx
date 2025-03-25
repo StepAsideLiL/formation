@@ -1,9 +1,12 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import atoms, { TFormObj, TInputMetadata } from "@/lib/store";
+import atoms, { TFormObj, TInputMetadata, TSelectMetadata } from "@/lib/store";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { useAtom } from "jotai";
+import { Label } from "@/components/ui/label";
 
 export function InputMetadateForm({ options }: { options: TFormObj }) {
   const metadata = options?.metadata as TInputMetadata;
@@ -44,6 +47,122 @@ export function InputMetadateForm({ options }: { options: TFormObj }) {
           })
         }
       />
+    </div>
+  );
+}
+
+export function SelectMetadateForm({ options }: { options: TFormObj }) {
+  const metadata = options?.metadata as TSelectMetadata;
+
+  const [formObj, setFormObj] = useAtom(atoms.formObjAtom);
+
+  function updateMetadata(metadata: TSelectMetadata) {
+    const newFormObj = formObj.map((field) =>
+      field.id === options.id ? { ...options, metadata: metadata } : field,
+    );
+
+    setFormObj(newFormObj);
+  }
+
+  return (
+    <div className="space-y-2">
+      <Separator />
+
+      <Input
+        type="text"
+        placeholder="Dropdown Placeholder Text"
+        value={metadata?.placeholder}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          updateMetadata({
+            placeholder: event.target.value || "",
+            description: metadata?.description || "",
+            options: metadata?.options || [],
+            defaultOption: metadata?.defaultOption || "",
+          })
+        }
+      />
+
+      <Input
+        type="text"
+        placeholder="Field Description"
+        value={metadata?.description}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          updateMetadata({
+            placeholder: metadata?.placeholder || "",
+            description: event.target.value || "",
+            options: metadata?.options || [],
+            defaultOption: metadata?.defaultOption || "",
+          })
+        }
+      />
+
+      <div className="flex w-full gap-2">
+        <div className="w-1/2 space-y-1">
+          <h2 className="text-xs">Options</h2>
+          {metadata.options?.map((option, i) => (
+            <Input
+              key={i}
+              placeholder="Option"
+              className="w-full"
+              value={option}
+              onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                updateMetadata({
+                  placeholder: metadata?.placeholder || "",
+                  description: metadata?.description || "",
+                  options: metadata?.options?.map((option, j) =>
+                    i === j ? event.target.value : option,
+                  ),
+                  defaultOption: metadata?.defaultOption || "",
+                })
+              }
+            />
+          ))}
+          <Button
+            variant={"outline"}
+            className="cursor-pointer"
+            onClick={() => {
+              updateMetadata({
+                placeholder: metadata?.placeholder || "",
+                description: metadata?.description || "",
+                options: [...(metadata?.options || []), "New Option"],
+                defaultOption: metadata?.defaultOption || "",
+              });
+            }}
+          >
+            Add Option
+          </Button>
+        </div>
+
+        <div className="w-1/2 space-y-1">
+          <h2 className="text-xs">Select default option</h2>
+
+          <RadioGroup
+            value={metadata.defaultOption}
+            onValueChange={(value: TSelectMetadata["defaultOption"]) =>
+              updateMetadata({
+                placeholder: metadata?.placeholder || "",
+                description: metadata?.description || "",
+                options: metadata?.options,
+                defaultOption: value,
+              })
+            }
+            className="space-x-2"
+          >
+            {metadata.options?.map((option, i) => (
+              <div key={i} className="flex items-center gap-1">
+                <RadioGroupItem
+                  value={option}
+                  id={option}
+                  className="cursor-pointer"
+                />
+                <Label htmlFor={option} className="cursor-pointer">
+                  {option}
+                </Label>
+              </div>
+            ))}
+          </RadioGroup>
+        </div>
+      </div>
     </div>
   );
 }

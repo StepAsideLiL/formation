@@ -1,6 +1,10 @@
 "use client";
 
-import { InputField, TextareaField } from "@/components/render-field";
+import {
+  InputField,
+  SelectField,
+  TextareaField,
+} from "@/components/render-field";
 import atoms from "@/lib/store";
 import { useAtom } from "jotai";
 
@@ -14,6 +18,10 @@ export default function FormPreview() {
 
     if (field.fieldType === "textarea") {
       return <TextareaField key={field.id} field={field} />;
+    }
+
+    if (field.fieldType === "select") {
+      return <SelectField key={field.id} field={field} />;
     }
   });
 }
