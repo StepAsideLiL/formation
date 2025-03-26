@@ -1,5 +1,11 @@
 import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Create New Form",
+  description: "Create new form by adding different types of fields",
+};
 
 export default function Layout({
   children,

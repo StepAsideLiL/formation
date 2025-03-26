@@ -3,7 +3,10 @@ import "./globals.css";
 import fonts from "@/lib/fonts";
 
 export const metadata: Metadata = {
-  title: "Formation",
+  title: {
+    template: "%s - Formation",
+    default: "Formation",
+  },
   description: "Create form to collect information",
   icons: {
     icon: "/favicon.ico",
