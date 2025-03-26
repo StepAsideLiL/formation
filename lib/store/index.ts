@@ -24,14 +24,20 @@ export type TCheckboxMetadata = {
   options?: string[];
 };
 
-export type TFormObj<T = TInputMetadata | TSelectMetadata | TCheckboxMetadata> =
-  {
-    id: string;
-    label: string;
-    fieldType: TFieldsType;
-    required: boolean;
-    metadata?: T;
-  };
+export type TRadioMetadata = {
+  description?: string;
+  options?: string[];
+};
+
+export type TFormObj<
+  T = TInputMetadata | TSelectMetadata | TCheckboxMetadata | TRadioMetadata,
+> = {
+  id: string;
+  label: string;
+  fieldType: TFieldsType;
+  required: boolean;
+  metadata?: T;
+};
 
 const formObjAtom = atomWithStorage<TFormObj[]>("formObj", []);
 

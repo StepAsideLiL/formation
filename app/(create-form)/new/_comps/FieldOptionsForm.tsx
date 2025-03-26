@@ -17,6 +17,7 @@ import { useAtom } from "jotai";
 import {
   CheckboxMetadataForm,
   InputMetadateForm,
+  RadioMetadataForm,
   SelectMetadateForm,
 } from "./MetadateForm";
 
@@ -176,6 +177,10 @@ export default function FieldOptionsForm({ options }: { options: TFormObj }) {
 
         {options.fieldType === "checkbox" && (
           <CheckboxMetadataForm options={options} />
+        )}
+
+        {options.fieldType === "radio" && (
+          <RadioMetadataForm options={options} />
         )}
       </div>
     </div>

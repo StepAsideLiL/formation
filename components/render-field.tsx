@@ -4,6 +4,7 @@ import {
   TCheckboxMetadata,
   TFormObj,
   TInputMetadata,
+  TRadioMetadata,
   TSelectMetadata,
 } from "@/lib/store";
 import { Textarea } from "@/components/ui/textarea";
@@ -15,6 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Checkbox } from "./ui/checkbox";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 export function InputField({ field }: { field: TFormObj }) {
   const metadata = field.metadata as TInputMetadata;
@@ -106,6 +108,40 @@ export function CheckboxField({ field }: { field: TFormObj }) {
             </Label>
           </div>
         ))}
+      </div>
+    </div>
+  );
+}
+
+export function RadioField({ field }: { field: TFormObj }) {
+  const metadata = field.metadata as TRadioMetadata;
+
+  return (
+    <div>
+      <div className="p-2">
+        <Label htmlFor={field.id}>
+          {field.label}
+          {field.required ? <span className="text-destructive">*</span> : ""}
+        </Label>
+        {(metadata?.description || metadata?.description?.length !== 0) && (
+          <p className="text-xs">{metadata.description}</p>
+        )}
+      </div>
+      <div className="space-y-1">
+        <RadioGroup>
+          {metadata.options?.map((option, i) => (
+            <div key={i} className="flex items-center gap-1">
+              <RadioGroupItem
+                value={option}
+                id={`${i}`}
+                className="cursor-pointer"
+              />
+              <Label htmlFor={`${i}`} className="cursor-pointer font-normal">
+                {option}
+              </Label>
+            </div>
+          ))}
+        </RadioGroup>
       </div>
     </div>
   );

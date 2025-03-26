@@ -3,6 +3,7 @@
 import {
   CheckboxField,
   InputField,
+  RadioField,
   SelectField,
   TextareaField,
 } from "@/components/render-field";
@@ -27,6 +28,10 @@ export default function FormPreview() {
 
     if (field.fieldType === "checkbox") {
       return <CheckboxField key={field.id} field={field} />;
+    }
+
+    if (field.fieldType === "radio") {
+      return <RadioField key={field.id} field={field} />;
     }
   });
 }
