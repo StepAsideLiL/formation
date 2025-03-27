@@ -88,7 +88,7 @@ export default function FieldOptionsForm({ options }: { options: TFormObj }) {
   return (
     <div className="border">
       <div className="flex items-center justify-between border-b p-1">
-        <span>Field Id: {options.id}</span>
+        <span>Field Type: {options.fieldType.toUpperCase()}</span>
 
         <div className="flex items-center gap-2">
           <div className="flex items-center space-x-2">
