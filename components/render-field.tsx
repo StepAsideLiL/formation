@@ -90,7 +90,7 @@ export function CheckboxField({ field }: { field: TFormObj }) {
 
   return (
     <div>
-      <div className="p-2">
+      <div className="mb-2">
         <Label htmlFor={field.id}>
           {field.label}
           {field.required ? <span className="text-destructive">*</span> : ""}
@@ -118,7 +118,7 @@ export function RadioField({ field }: { field: TFormObj }) {
 
   return (
     <div>
-      <div className="p-2">
+      <div className="mb-2">
         <Label htmlFor={field.id}>
           {field.label}
           {field.required ? <span className="text-destructive">*</span> : ""}
