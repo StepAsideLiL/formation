@@ -21,12 +21,6 @@ import {
   SelectMetadateForm,
 } from "./MetadateForm";
 
-/**
- * selection for field type
- * input - label
- * checkbox - required
- */
-
 const typeOptions: TFieldsType[] = [
   "input",
   "textarea",
