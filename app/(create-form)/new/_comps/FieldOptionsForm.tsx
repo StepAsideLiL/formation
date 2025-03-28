@@ -32,22 +32,27 @@ const typeOptions: TFieldsType[] = [
 
 const fieldTypesMeta = {
   input: {
+    label: "Input",
     name: "One Line Text",
     icon: Icons.OneLine,
   },
   textarea: {
+    label: "Textarea",
     name: "Paragraph Text",
     icon: Icons.Paragraph,
   },
   select: {
+    label: "Select",
     name: "Dropdown Options",
     icon: Icons.Select,
   },
   radio: {
+    label: "Radio",
     name: "Multiple Choice",
     icon: Icons.Choice,
   },
   checkbox: {
+    label: "Checkbox",
     name: "Checkboxs",
     icon: Icons.Checkbox,
   },
@@ -91,7 +96,7 @@ export default function FieldOptionsForm({ options }: { options: TFormObj }) {
   return (
     <div className="border">
       <div className="flex items-center justify-between border-b p-1">
-        <span>Field Type: {options.fieldType.toUpperCase()}</span>
+        <span>Field Type: {fieldTypesMeta[options.fieldType].label}</span>
 
         <div className="flex items-center gap-2">
           <div className="flex items-center space-x-2">
