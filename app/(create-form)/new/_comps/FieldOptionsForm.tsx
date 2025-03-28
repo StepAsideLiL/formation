@@ -19,6 +19,7 @@ import {
   InputMetadateForm,
   RadioMetadataForm,
   SelectMetadateForm,
+  TextareaMetadateForm,
 } from "./MetadateForm";
 
 const typeOptions: TFieldsType[] = [
@@ -57,7 +58,9 @@ export default function FieldOptionsForm({ options }: { options: TFormObj }) {
 
   function updateFieldType(value: TFieldsType) {
     const newFormObj = formObj.map((field) =>
-      field.id === options.id ? { ...options, fieldType: value } : field,
+      field.id === options.id
+        ? { ...options, fieldType: value, metadata: {} }
+        : field,
     );
 
     setFormObj(newFormObj);
@@ -160,9 +163,12 @@ export default function FieldOptionsForm({ options }: { options: TFormObj }) {
           />
         </div>
 
-        {(options.fieldType === "input" ||
-          options.fieldType === "textarea") && (
+        {options.fieldType === "input" && (
           <InputMetadateForm options={options} />
+        )}
+
+        {options.fieldType === "textarea" && (
+          <TextareaMetadateForm options={options} />
         )}
 
         {options.fieldType === "select" && (

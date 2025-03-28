@@ -58,6 +58,49 @@ export function InputMetadateForm({ options }: { options: TFormObj }) {
   );
 }
 
+export function TextareaMetadateForm({ options }: { options: TFormObj }) {
+  const metadata = options?.metadata as TInputMetadata;
+  const [formObj, setFormObj] = useAtom(atoms.formObjAtom);
+
+  function updateMetadata(metadata: TInputMetadata) {
+    const newFormObj = formObj.map((field) =>
+      field.id === options.id ? { ...options, metadata: metadata } : field,
+    );
+
+    setFormObj(newFormObj);
+  }
+
+  return (
+    <div className="space-y-2">
+      <Separator />
+
+      <Input
+        type="text"
+        placeholder="Textarea Placeholder Text"
+        value={metadata?.placeholder}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          updateMetadata({
+            placeholder: event.target.value || "",
+            description: metadata?.description || "",
+          })
+        }
+      />
+
+      <Input
+        type="text"
+        placeholder="Textarea Field Description"
+        value={metadata?.description}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          updateMetadata({
+            placeholder: metadata.placeholder || "",
+            description: event.target.value || "",
+          })
+        }
+      />
+    </div>
+  );
+}
+
 export function SelectMetadateForm({ options }: { options: TFormObj }) {
   const metadata = options?.metadata as TSelectMetadata;
   const [formObj, setFormObj] = useAtom(atoms.formObjAtom);
