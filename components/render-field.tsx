@@ -21,6 +21,10 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 export function InputField({ field }: { field: TFormObj }) {
   const metadata = field.metadata as TInputMetadata;
 
+  if (field.label === "") {
+    return null;
+  }
+
   return (
     <div>
       <Label htmlFor={field.id} className="mb-2">
@@ -41,6 +45,10 @@ export function InputField({ field }: { field: TFormObj }) {
 export function TextareaField({ field }: { field: TFormObj }) {
   const metadata = field.metadata as TInputMetadata;
 
+  if (field.label === "") {
+    return null;
+  }
+
   return (
     <div>
       <Label htmlFor={field.id} className="mb-2">
@@ -60,6 +68,10 @@ export function TextareaField({ field }: { field: TFormObj }) {
 
 export function SelectField({ field }: { field: TFormObj }) {
   const metadata = field.metadata as TSelectMetadata;
+
+  if (field.label === "") {
+    return null;
+  }
 
   return (
     <div>
@@ -88,6 +100,10 @@ export function SelectField({ field }: { field: TFormObj }) {
 export function CheckboxField({ field }: { field: TFormObj }) {
   const metadata = field.metadata as TCheckboxMetadata;
 
+  if (field.label === "") {
+    return null;
+  }
+
   return (
     <div>
       <div className="mb-2">
@@ -115,6 +131,10 @@ export function CheckboxField({ field }: { field: TFormObj }) {
 
 export function RadioField({ field }: { field: TFormObj }) {
   const metadata = field.metadata as TRadioMetadata;
+
+  if (field.label === "") {
+    return null;
+  }
 
   return (
     <div>
