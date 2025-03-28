@@ -19,9 +19,7 @@ export default function Layout({
           <Logo />
 
           <div>
-            <Button variant={"outline"} className="cursor-pointer">
-              Preview
-            </Button>
+            <Button className="cursor-pointer">Publish</Button>
           </div>
         </div>
       </header>
