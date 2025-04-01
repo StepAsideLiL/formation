@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import Icons from "@/lib/icons";
 import atoms from "@/lib/store";
 import { fieldId } from "@/lib/utils";
 import { useAtom } from "jotai";
@@ -24,7 +25,7 @@ export default function AddFieldBtn() {
         ])
       }
     >
-      Add Field
+      <Icons.Plus /> Add Field
     </Button>
   );
 }
