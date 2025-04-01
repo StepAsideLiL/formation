@@ -3,10 +3,12 @@ import * as L from "lucide-react";
 const Icons = {
   Checkbox: L.SquareCheck,
   Choice: L.CircleDot,
+  Grip: L.GripVertical,
   OneLine: L.Minus,
   Paragraph: L.Text,
-  Trash: L.Trash,
+  Plus: L.Plus,
   Select: L.ChevronDown,
+  Trash: L.Trash,
 };
 
 export default Icons;

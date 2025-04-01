@@ -28,6 +28,8 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import Icons from "@/lib/icons";
+import { Button } from "@/components/ui/button";
 
 export default function FormFields() {
   const [formObj, setFromObj] = useAtom(atoms.formObjAtom);
@@ -78,37 +80,48 @@ function SortableItem({ field }: { field: TFormObj }) {
   };
 
   return (
-    <div
-      ref={setNodeRef}
-      style={style}
-      {...attributes}
-      {...listeners}
-      className="flex items-start gap-5"
-    >
-      <div className="w-1/2">
-        <FieldOptionsForm options={field} />
-      </div>
+    <div ref={setNodeRef} style={style} className="group">
+      <div className="relative mx-auto flex w-5xl items-start gap-5">
+        <div className="absolute top-0 -left-10 hidden flex-col group-hover:flex">
+          <Button
+            variant={"ghost"}
+            size={"icon"}
+            className="cursor-pointer"
+            {...attributes}
+            {...listeners}
+          >
+            <Icons.Grip size={16} />
+          </Button>
+          <Button variant={"ghost"} size={"icon"} className="cursor-pointer">
+            <Icons.Plus size={16} />
+          </Button>
+        </div>
 
-      <div className="w-1/2">
-        {field.fieldType === "input" && (
-          <InputField key={field.id} field={field} />
-        )}
+        <div className="w-1/2">
+          <FieldOptionsForm options={field} />
+        </div>
 
-        {field.fieldType === "textarea" && (
-          <TextareaField key={field.id} field={field} />
-        )}
+        <div className="w-1/2">
+          {field.fieldType === "input" && (
+            <InputField key={field.id} field={field} />
+          )}
 
-        {field.fieldType === "select" && (
-          <SelectField key={field.id} field={field} />
-        )}
+          {field.fieldType === "textarea" && (
+            <TextareaField key={field.id} field={field} />
+          )}
 
-        {field.fieldType === "checkbox" && (
-          <CheckboxField key={field.id} field={field} />
-        )}
+          {field.fieldType === "select" && (
+            <SelectField key={field.id} field={field} />
+          )}
 
-        {field.fieldType === "radio" && (
-          <RadioField key={field.id} field={field} />
-        )}
+          {field.fieldType === "checkbox" && (
+            <CheckboxField key={field.id} field={field} />
+          )}
+
+          {field.fieldType === "radio" && (
+            <RadioField key={field.id} field={field} />
+          )}
+        </div>
       </div>
     </div>
   );
