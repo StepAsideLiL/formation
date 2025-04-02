@@ -1,4 +1,6 @@
+import { atom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
+import { fieldId } from "../utils";
 
 export type TFieldsType =
   | "input"
@@ -39,10 +41,37 @@ export type TFormObj<
   metadata?: T;
 };
 
+export const insertFormObj = (): TFormObj => {
+  return {
+    id: fieldId(),
+    label: "",
+    fieldType: "input",
+    required: true,
+    metadata: {},
+  };
+};
+
 const formObjAtom = atomWithStorage<TFormObj[]>("formObj", []);
+
+const insertFieldAfterAtom = atom(null, (get, set, fieldId: string) => {
+  const formObj = get(formObjAtom);
+  const newFormObj: TFormObj[] = [];
+
+  for (let i = 0; i < formObj.length; i++) {
+    if (formObj[i].id === fieldId) {
+      newFormObj.push(formObj[i]);
+      newFormObj.push(insertFormObj());
+    } else {
+      newFormObj.push(formObj[i]);
+    }
+  }
+
+  set(formObjAtom, newFormObj);
+});
 
 const atoms = {
   formObjAtom,
+  insertFieldAfterAtom,
 };
 
 export default atoms;

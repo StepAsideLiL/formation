@@ -73,6 +73,7 @@ export default function FormFields() {
 function SortableItem({ field }: { field: TFormObj }) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: field.id as UniqueIdentifier });
+  const [, insertFieldAfterById] = useAtom(atoms.insertFieldAfterAtom);
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -92,7 +93,12 @@ function SortableItem({ field }: { field: TFormObj }) {
           >
             <Icons.Grip size={16} />
           </Button>
-          <Button variant={"ghost"} size={"icon"} className="cursor-pointer">
+          <Button
+            variant={"ghost"}
+            size={"icon"}
+            className="cursor-pointer"
+            onClick={() => insertFieldAfterById(field.id)}
+          >
             <Icons.Plus size={16} />
           </Button>
         </div>
