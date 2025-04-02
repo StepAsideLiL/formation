@@ -35,6 +35,7 @@ export function InputField({ field }: { field: TFormObj }) {
         id={field.id}
         type="text"
         placeholder={metadata.placeholder}
+        required={field.required}
         className="mb-1"
       />
       <p className="text-xs">{metadata.description}</p>
@@ -59,6 +60,7 @@ export function TextareaField({ field }: { field: TFormObj }) {
         id={field.id}
         placeholder={metadata.placeholder}
         rows={5}
+        required={field.required}
         className="mb-1"
       />
       <p className="text-xs">{metadata.description}</p>
@@ -79,7 +81,7 @@ export function SelectField({ field }: { field: TFormObj }) {
         {field.label}
         {field.required ? <span className="text-destructive">*</span> : ""}
       </Label>
-      <Select>
+      <Select required={field.required}>
         <SelectTrigger id={field.id} className="w-full cursor-pointer">
           <SelectValue id={field.id} placeholder={metadata.placeholder} />
         </SelectTrigger>
@@ -118,7 +120,11 @@ export function CheckboxField({ field }: { field: TFormObj }) {
       <div className="space-y-1">
         {metadata.options?.map((option, i) => (
           <div key={i} className="flex items-center gap-1">
-            <Checkbox id={`${i}`} className="cursor-pointer" />
+            <Checkbox
+              id={`${i}`}
+              required={field.required}
+              className="cursor-pointer"
+            />
             <Label htmlFor={`${i}`} className="cursor-pointer font-normal">
               {option}
             </Label>
@@ -148,7 +154,7 @@ export function RadioField({ field }: { field: TFormObj }) {
         )}
       </div>
       <div className="space-y-1">
-        <RadioGroup>
+        <RadioGroup required={field.required}>
           {metadata.options?.map((option, i) => (
             <div key={i} className="flex items-center gap-1">
               <RadioGroupItem
