@@ -101,7 +101,7 @@ export default function AppPreview() {
         <RenderFormFields />
       </div>
 
-      <div className="absolute inset-0 z-50 w-full bg-gradient-to-t from-black to-transparent"></div>
+      <div className="from-background absolute inset-0 z-50 w-full bg-gradient-to-t to-transparent"></div>
     </div>
   );
 }
