@@ -16,7 +16,7 @@ export default function Layout({
   return (
     <>
       <header className="border-b py-5">
-        <div className="mx-auto flex w-5xl items-center justify-between">
+        <div className="mx-auto flex w-full max-w-5xl items-center justify-between">
           <Logo />
 
           <div className="flex items-center gap-2">
