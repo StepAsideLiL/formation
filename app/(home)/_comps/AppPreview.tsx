@@ -96,17 +96,19 @@ const fieldTypesMeta = {
 
 export default function AppPreview() {
   return (
-    <div className="mx-auto px-10">
-      <div className="mx-auto h-auto w-7xl origin-top-left overflow-x-hidden select-none">
+    <div className="relative mx-auto w-full overflow-x-hidden">
+      <div className="ml-12 h-auto w-5xl origin-top-left scale-75 py-10 select-none md:ml-36 md:w-7xl md:scale-90">
         <RenderFormFields />
       </div>
+
+      <div className="absolute inset-0 z-50 w-full bg-gradient-to-t from-black to-transparent"></div>
     </div>
   );
 }
 
 function RenderFormFields() {
   return (
-    <div className="space-y-5">
+    <div className="w-full space-y-5">
       <section className="space-y-5">
         {formObj.map((field) => (
           <div key={field.id}>
