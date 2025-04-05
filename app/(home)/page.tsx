@@ -32,109 +32,115 @@ export default function Page() {
             Types of Fields in Formation
           </h1>
 
-          {/* Input */}
-          <div className="grid grid-cols-2 gap-5">
-            <div className="space-y-5">
-              <div className="space-y-0.5">
-                <h2 className="text-3xl">One Line Text</h2>
-                <p className="text-muted-foreground">
-                  Input field for short text
-                </p>
+          <div className="flex flex-col items-center justify-center gap-10">
+            <div className="flex w-full items-start justify-center gap-5">
+              {/* Input */}
+              <div className="w-1/2 space-y-5">
+                <div className="space-y-0.5">
+                  <h2 className="text-3xl">One Line Text</h2>
+                  <p className="text-muted-foreground">
+                    Input field for short text
+                  </p>
+                </div>
+
+                <div className="relative select-none">
+                  <InputFieldPreview />
+                  <div
+                    className="absolute inset-0 z-50"
+                    style={{
+                      background:
+                        "radial-gradient(circle at top left, #00000000, var(--background))",
+                    }}
+                  ></div>
+                </div>
               </div>
 
-              <div className="relative select-none">
-                <InputFieldPreview />
-                <div
-                  className="absolute inset-0 z-50"
-                  style={{
-                    background:
-                      "radial-gradient(circle at top left, #00000000, var(--background))",
-                  }}
-                ></div>
-              </div>
-            </div>
+              {/* Textarea */}
+              <div className="w-1/2 space-y-5">
+                <div className="space-y-0.5">
+                  <h2 className="text-3xl">Paragraph Text</h2>
+                  <p className="text-muted-foreground">
+                    Textarea field for long multiline text
+                  </p>
+                </div>
 
-            {/* Textarea */}
-            <div className="space-y-5">
-              <div className="space-y-0.5">
-                <h2 className="text-3xl">Paragraph Text</h2>
-                <p className="text-muted-foreground">
-                  Textarea field for long multiline text
-                </p>
-              </div>
-
-              <div className="relative select-none">
-                <TextareaFieldPreview />
-                <div
-                  className="absolute inset-0 z-50"
-                  style={{
-                    background:
-                      "radial-gradient(circle at top left, #00000000, var(--background))",
-                  }}
-                ></div>
-              </div>
-            </div>
-
-            {/* Radio */}
-            <div className="space-y-5">
-              <div className="space-y-0.5">
-                <h2 className="text-3xl">Multiple Choice</h2>
-                <p className="text-muted-foreground">
-                  Select an option from a radio button group
-                </p>
-              </div>
-
-              <div className="relative select-none">
-                <RadioFieldPreview />
-                <div
-                  className="absolute inset-0 z-50"
-                  style={{
-                    background:
-                      "radial-gradient(circle at top left, #00000000, var(--background))",
-                  }}
-                ></div>
+                <div className="relative select-none">
+                  <TextareaFieldPreview />
+                  <div
+                    className="absolute inset-0 z-50"
+                    style={{
+                      background:
+                        "radial-gradient(circle at top left, #00000000, var(--background))",
+                    }}
+                  ></div>
+                </div>
               </div>
             </div>
 
-            {/* Checkbox */}
-            <div className="space-y-5">
-              <div className="space-y-0.5">
-                <h2 className="text-3xl">Multiple Choice</h2>
-                <p className="text-muted-foreground">
-                  Select an option from a radio button group
-                </p>
+            <div className="flex w-full items-start justify-center gap-5">
+              {/* Radio */}
+              <div className="w-1/2 space-y-5">
+                <div className="space-y-0.5">
+                  <h2 className="text-3xl">Multiple Choice</h2>
+                  <p className="text-muted-foreground">
+                    Select an option from a radio button group
+                  </p>
+                </div>
+
+                <div className="relative select-none">
+                  <RadioFieldPreview />
+                  <div
+                    className="absolute inset-0 z-50"
+                    style={{
+                      background:
+                        "radial-gradient(circle at top left, #00000000, var(--background))",
+                    }}
+                  ></div>
+                </div>
               </div>
 
-              <div className="relative select-none">
-                <CheckboxFieldPreview />
-                <div
-                  className="absolute inset-0 z-50"
-                  style={{
-                    background:
-                      "radial-gradient(circle at top left, #00000000, var(--background))",
-                  }}
-                ></div>
+              {/* Checkbox */}
+              <div className="w-1/2 space-y-5">
+                <div className="space-y-0.5">
+                  <h2 className="text-3xl">Multiple Choice</h2>
+                  <p className="text-muted-foreground">
+                    Select an option from a radio button group
+                  </p>
+                </div>
+
+                <div className="relative select-none">
+                  <CheckboxFieldPreview />
+                  <div
+                    className="absolute inset-0 z-50"
+                    style={{
+                      background:
+                        "radial-gradient(circle at top left, #00000000, var(--background))",
+                    }}
+                  ></div>
+                </div>
               </div>
             </div>
 
-            {/* Select */}
-            <div className="space-y-5">
-              <div className="space-y-0.5">
-                <h2 className="text-3xl">Dropdown Options</h2>
-                <p className="text-muted-foreground">
-                  Select an option from a dropdown list
-                </p>
-              </div>
+            <div className="flex w-full items-start justify-center gap-5">
+              {/* Select */}
+              <div className="w-1/2 space-y-5">
+                <div className="space-y-0.5">
+                  <h2 className="text-3xl">Dropdown Options</h2>
+                  <p className="text-muted-foreground">
+                    Select an option from a dropdown list
+                  </p>
+                </div>
 
-              <div className="relative select-none">
-                <SelectFieldPreview />
-                <div
-                  className="absolute inset-0 z-50"
-                  style={{
-                    background:
-                      "radial-gradient(circle at top left, #00000000, var(--background))",
-                  }}
-                ></div>
+                <div className="relative select-none">
+                  <SelectFieldPreview />
+                  <div
+                    className="absolute inset-0 z-50"
+                    style={{
+                      background:
+                        "radial-gradient(circle at top left, #00000000, var(--background))",
+                    }}
+                  ></div>
+                </div>
               </div>
             </div>
           </div>
