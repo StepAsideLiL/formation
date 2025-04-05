@@ -26,11 +26,20 @@ export default function Page() {
         <AppPreview />
       </section>
 
-      <section className="py-20">
-        <div className="mx-auto w-full max-w-5xl space-y-10">
-          <h1 className="text-center text-4xl font-medium">
-            Types of Fields in Formation
-          </h1>
+      <section className="relative py-20">
+        <div className="to-background from-foreground/5 absolute top-0 left-0 -z-50 h-96 w-full bg-gradient-to-b"></div>
+
+        <div className="mx-auto w-full max-w-5xl">
+          <div className="space-y-1 text-center">
+            <h1 className="text-4xl font-medium">
+              Types of Fields in Formation
+            </h1>
+            <p className="text-foreground/50">
+              You can create a form with these following input type fields.
+            </p>
+          </div>
+
+          <div className="h-28"></div>
 
           <div className="flex flex-col items-center justify-center gap-10">
             <div className="flex w-full items-start justify-center gap-5">
