@@ -44,7 +44,13 @@ export default function Page() {
 
               <div className="relative select-none">
                 <InputFieldPreview />
-                <div className="absolute inset-0 z-50 bg-transparent"></div>
+                <div
+                  className="absolute inset-0 z-50"
+                  style={{
+                    background:
+                      "radial-gradient(circle at top left, #00000000, var(--background))",
+                  }}
+                ></div>
               </div>
             </div>
 
@@ -59,7 +65,13 @@ export default function Page() {
 
               <div className="relative select-none">
                 <TextareaFieldPreview />
-                <div className="absolute inset-0 z-50 bg-transparent"></div>
+                <div
+                  className="absolute inset-0 z-50"
+                  style={{
+                    background:
+                      "radial-gradient(circle at top left, #00000000, var(--background))",
+                  }}
+                ></div>
               </div>
             </div>
 
@@ -74,7 +86,13 @@ export default function Page() {
 
               <div className="relative select-none">
                 <RadioFieldPreview />
-                <div className="absolute inset-0 z-50 bg-transparent"></div>
+                <div
+                  className="absolute inset-0 z-50"
+                  style={{
+                    background:
+                      "radial-gradient(circle at top left, #00000000, var(--background))",
+                  }}
+                ></div>
               </div>
             </div>
 
@@ -89,7 +107,13 @@ export default function Page() {
 
               <div className="relative select-none">
                 <CheckboxFieldPreview />
-                <div className="absolute inset-0 z-50 bg-transparent"></div>
+                <div
+                  className="absolute inset-0 z-50"
+                  style={{
+                    background:
+                      "radial-gradient(circle at top left, #00000000, var(--background))",
+                  }}
+                ></div>
               </div>
             </div>
 
@@ -104,7 +128,13 @@ export default function Page() {
 
               <div className="relative select-none">
                 <SelectFieldPreview />
-                <div className="absolute inset-0 z-50 bg-transparent"></div>
+                <div
+                  className="absolute inset-0 z-50"
+                  style={{
+                    background:
+                      "radial-gradient(circle at top left, #00000000, var(--background))",
+                  }}
+                ></div>
               </div>
             </div>
           </div>
