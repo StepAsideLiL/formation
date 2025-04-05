@@ -41,10 +41,10 @@ export default function Page() {
 
           <div className="h-28"></div>
 
-          <div className="flex flex-col items-center justify-center gap-10">
-            <div className="flex w-full items-start justify-center gap-5">
+          <div className="flex flex-col items-center justify-center gap-10 px-5 md:px-0">
+            <div className="flex w-full flex-col items-start justify-center gap-5 md:flex-row">
               {/* Input */}
-              <div className="w-1/2 space-y-5">
+              <div className="w-full space-y-5 md:w-1/2">
                 <div className="space-y-0.5">
                   <h2 className="text-3xl">One Line Text</h2>
                   <p className="text-muted-foreground">
@@ -65,7 +65,7 @@ export default function Page() {
               </div>
 
               {/* Textarea */}
-              <div className="w-1/2 space-y-5">
+              <div className="w-full space-y-5 md:w-1/2">
                 <div className="space-y-0.5">
                   <h2 className="text-3xl">Paragraph Text</h2>
                   <p className="text-muted-foreground">
@@ -86,9 +86,9 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="flex w-full items-start justify-center gap-5">
+            <div className="flex w-full flex-col items-start justify-center gap-5 md:flex-row">
               {/* Radio */}
-              <div className="w-1/2 space-y-5">
+              <div className="w-full space-y-5 md:w-1/2">
                 <div className="space-y-0.5">
                   <h2 className="text-3xl">Multiple Choice</h2>
                   <p className="text-muted-foreground">
@@ -109,7 +109,7 @@ export default function Page() {
               </div>
 
               {/* Checkbox */}
-              <div className="w-1/2 space-y-5">
+              <div className="w-full space-y-5 md:w-1/2">
                 <div className="space-y-0.5">
                   <h2 className="text-3xl">Multiple Choice</h2>
                   <p className="text-muted-foreground">
@@ -130,9 +130,9 @@ export default function Page() {
               </div>
             </div>
 
-            <div className="flex w-full items-start justify-center gap-5">
+            <div className="flex w-full flex-col items-start justify-center gap-5 md:flex-row">
               {/* Select */}
-              <div className="w-1/2 space-y-5">
+              <div className="w-full space-y-5 md:w-1/2">
                 <div className="space-y-0.5">
                   <h2 className="text-3xl">Dropdown Options</h2>
                   <p className="text-muted-foreground">
