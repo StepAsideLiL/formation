@@ -21,9 +21,11 @@ export default function Layout({
           <Logo />
 
           <div className="flex items-center gap-2">
-            <Button className="cursor-pointer">Sign Up</Button>
-            <Button variant={"secondary"} className="cursor-pointer">
-              Sign In
+            <Button asChild>
+              <Link href={"/auth/sign-up"}>Sign Up</Link>
+            </Button>
+            <Button variant={"secondary"} asChild>
+              <Link href={"/auth/sign-in"}>Sign In</Link>
             </Button>
           </div>
         </div>
