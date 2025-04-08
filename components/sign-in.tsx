@@ -1,4 +1,7 @@
 /* eslint-disable react/no-children-prop */
+
+"use client";
+
 import { useForm } from "@tanstack/react-form";
 import Link from "next/link";
 import { Label } from "@/components/ui/label";
@@ -9,7 +12,7 @@ import { z } from "zod";
 export default function SignIn() {
   return (
     <section className="space-y-5">
-      <h1 className="text-3xl">Sign Up In Formation</h1>
+      <h1 className="text-3xl">Sign In to Formation</h1>
 
       <div className="min-w-96 border p-5">
         <Form />
