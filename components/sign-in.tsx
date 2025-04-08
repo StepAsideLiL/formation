@@ -91,7 +91,7 @@ function Form() {
         )}
       />
 
-      <form.Subscribe children={() => <Button type="submit">Sign Up</Button>} />
+      <form.Subscribe children={() => <Button type="submit">Sign In</Button>} />
     </form>
   );
 }
