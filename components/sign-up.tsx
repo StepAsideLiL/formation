@@ -2,11 +2,12 @@
 "use client";
 
 import { useForm } from "@tanstack/react-form";
-import { z } from "zod";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import signUp from "@/lib/actions/sign-up";
+import schema from "@/lib/schema";
 
 export default function SignUp() {
   return (
@@ -35,22 +36,18 @@ export default function SignUp() {
 function Form() {
   const form = useForm({
     defaultValues: {
-      name: "",
+      username: "",
       email: "",
       password: "",
       confirmPass: "",
     },
     validators: {
-      onChange: z.object({
-        name: z.string(),
-        email: z.string().email(),
-        password: z.string(),
-        confirmPass: z.string(),
-      }),
+      onChange: schema.signUpFormSchema,
     },
     onSubmit: async ({ value }) => {
       // Do something with form data
-      console.log(value);
+      const { error, data } = await signUp(value);
+      console.log(error, data);
     },
   });
 
@@ -63,10 +60,10 @@ function Form() {
       }}
     >
       <form.Field
-        name="name"
+        name="username"
         children={(field) => (
           <div className="space-y-2">
-            <Label htmlFor={field.name}>Name</Label>
+            <Label htmlFor={field.name}>Username</Label>
             <Input
               id={field.name}
               name={field.name}

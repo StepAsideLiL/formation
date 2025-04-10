@@ -7,7 +7,8 @@ import Link from "next/link";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { z } from "zod";
+import schema from "@/lib/schema";
+import signIn from "@/lib/actions/sign-in";
 
 export default function SignIn() {
   return (
@@ -40,14 +41,12 @@ function Form() {
       password: "",
     },
     validators: {
-      onChange: z.object({
-        email: z.string().email(),
-        password: z.string(),
-      }),
+      onChange: schema.signInFormSchema,
     },
     onSubmit: async ({ value }) => {
       // Do something with form data
-      console.log(value);
+      const { error, data } = await signIn(value);
+      console.log(error, data);
     },
   });
 
