@@ -2,25 +2,32 @@
 
 import { z } from "zod";
 import schema from "../schema";
-import { authClient } from "@/lib/auth";
-
-type TResponse<TError = unknown, TData = unknown> = {
-  error: TError;
-  data: TData;
-};
+import { auth } from "@/lib/auth";
+import { TResponse } from "@/lib/types";
 
 export default async function signIn(
   formData: z.infer<typeof schema.signInFormSchema>,
 ): Promise<TResponse> {
   const { email, password } = formData;
 
-  const { error, data } = await authClient.signIn.email({
-    email: email,
-    password: password,
+  const res = await auth.api.signInEmail({
+    body: {
+      email: email,
+      password: password,
+    },
   });
 
+  if (!res) {
+    return {
+      error: {
+        message: "Invalid email or password",
+      },
+      data: null,
+    };
+  }
+
   return {
-    error: error,
-    data: data,
+    error: null,
+    data: res,
   };
 }

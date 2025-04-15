@@ -2,12 +2,8 @@
 
 import { z } from "zod";
 import schema from "../schema";
-import { authClient } from "@/lib/auth";
-
-type TResponse<TError = unknown, TData = unknown> = {
-  error: TError;
-  data: TData;
-};
+import { auth } from "@/lib/auth";
+import { TResponse } from "@/lib/types";
 
 export default async function signUp(
   formData: z.infer<typeof schema.signUpFormSchema>,
@@ -24,16 +20,27 @@ export default async function signUp(
     };
   }
 
-  const { data, error } = await authClient.signUp.email({
-    email: email,
-    password: password,
-    username: username.toLowerCase(),
-    displayUsername: username,
-    name: username,
+  const res = await auth.api.signUpEmail({
+    body: {
+      email: email,
+      password: password,
+      username: username.toLowerCase(),
+      displayUsername: username,
+      name: username,
+    },
   });
 
+  if (!res) {
+    return {
+      error: {
+        message: "Failed to sign up",
+      },
+      data: null,
+    };
+  }
+
   return {
-    error: error,
-    data: data,
+    error: null,
+    data: res,
   };
 }
