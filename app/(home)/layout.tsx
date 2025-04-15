@@ -1,6 +1,9 @@
 import Logo from "@/components/Logo";
+import SignOutBtn from "@/components/SignOutBtn";
 import { Button } from "@/components/ui/button";
+import { auth } from "@/lib/auth";
 import { Metadata } from "next";
+import { headers } from "next/headers";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -9,11 +12,15 @@ export const metadata: Metadata = {
     "Formation is a form building platform for collecting data from user",
 };
 
-export default function Layout({
+export default async function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
   return (
     <>
       <header className="border-b py-5">
@@ -21,12 +28,20 @@ export default function Layout({
           <Logo />
 
           <div className="flex items-center gap-2">
-            <Button asChild>
-              <Link href={"/auth/sign-up"}>Sign Up</Link>
-            </Button>
-            <Button variant={"secondary"} asChild>
-              <Link href={"/auth/sign-in"}>Sign In</Link>
-            </Button>
+            {session ? (
+              <>
+                <SignOutBtn />
+              </>
+            ) : (
+              <>
+                <Button asChild>
+                  <Link href={"/auth/sign-up"}>Sign Up</Link>
+                </Button>
+                <Button variant={"secondary"} asChild>
+                  <Link href={"/auth/sign-in"}>Sign In</Link>
+                </Button>
+              </>
+            )}
           </div>
         </div>
       </header>
