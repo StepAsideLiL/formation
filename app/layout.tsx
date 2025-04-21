@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import fonts from "@/lib/fonts";
 import ThemeProvider from "@/components/ThemeProvider";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: {
@@ -29,6 +30,7 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
           {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
