@@ -5,9 +5,11 @@ import schema from "../schema";
 import { auth } from "@/lib/auth";
 import { TResponse } from "@/lib/types";
 
+type TData = { token: string | null; user: string } | null;
+
 export default async function signIn(
   formData: z.infer<typeof schema.signInFormSchema>,
-): Promise<TResponse> {
+): Promise<TResponse<TData>> {
   const { email, password } = formData;
 
   const res = await auth.api.signInEmail({
@@ -28,6 +30,9 @@ export default async function signIn(
 
   return {
     error: null,
-    data: res,
+    data: {
+      token: res.token,
+      user: res.user.name,
+    },
   };
 }
