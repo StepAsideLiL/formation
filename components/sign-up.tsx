@@ -8,6 +8,10 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import signUp from "@/lib/actions/sign-up";
 import schema from "@/lib/schema";
+import { useState } from "react";
+import Icons from "@/lib/icons";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function SignUp() {
   return (
@@ -34,6 +38,9 @@ export default function SignUp() {
 }
 
 function Form() {
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
   const form = useForm({
     defaultValues: {
       username: "",
@@ -45,9 +52,17 @@ function Form() {
       onChange: schema.signUpFormSchema,
     },
     onSubmit: async ({ value }) => {
-      // Do something with form data
+      setLoading(true);
       const { error, data } = await signUp(value);
-      console.log(error, data);
+
+      if (error) {
+        toast.error(error.message);
+        setLoading(false);
+      }
+
+      if (data) {
+        router.push("/auth/sign-in");
+      }
     },
   });
 
@@ -123,7 +138,24 @@ function Form() {
         )}
       />
 
-      <form.Subscribe children={() => <Button type="submit">Sign Up</Button>} />
+      <form.Subscribe
+        children={() => (
+          <Button type="submit" disabled={loading}>
+            {loading ? (
+              <>
+                <Icons.Loading
+                  className="-ms-1 animate-spin"
+                  size={16}
+                  aria-hidden="true"
+                />
+                Signing Up
+              </>
+            ) : (
+              "Sign Up"
+            )}
+          </Button>
+        )}
+      />
     </form>
   );
 }
