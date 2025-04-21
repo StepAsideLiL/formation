@@ -5,15 +5,16 @@ import schema from "../schema";
 import { auth } from "@/lib/auth";
 import { TResponse } from "@/lib/types";
 
+type TData = { token: string | null; user: string } | null;
+
 export default async function signUp(
   formData: z.infer<typeof schema.signUpFormSchema>,
-): Promise<TResponse> {
+): Promise<TResponse<TData>> {
   const { username, email, password, confirmPass } = formData;
 
   if (password !== confirmPass) {
     return {
       error: {
-        type: "validation",
         message: "Passwords don't match",
       },
       data: null,
@@ -41,6 +42,9 @@ export default async function signUp(
 
   return {
     error: null,
-    data: res,
+    data: {
+      token: res.token,
+      user: res.user.name,
+    },
   };
 }
