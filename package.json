@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently --kill-others \"prisma generate && next dev --turbopack\" \"prisma studio --browser none\" \"docker compose up\"",
-    "dev:next": "next dev --turbopack",
+    "dev": "concurrently --kill-others \"prisma generate && next dev\" \"prisma studio --browser none\" \"docker compose up\"",
+    "dev:next": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
