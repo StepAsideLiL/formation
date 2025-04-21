@@ -9,6 +9,10 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import schema from "@/lib/schema";
 import signIn from "@/lib/actions/sign-in";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Icons from "@/lib/icons";
+import { toast } from "sonner";
 
 export default function SignIn() {
   return (
@@ -35,6 +39,9 @@ export default function SignIn() {
 }
 
 function Form() {
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
   const form = useForm({
     defaultValues: {
       email: "",
@@ -44,9 +51,18 @@ function Form() {
       onChange: schema.signInFormSchema,
     },
     onSubmit: async ({ value }) => {
-      // Do something with form data
+      setLoading(true);
+
       const { error, data } = await signIn(value);
-      console.log(error, data);
+
+      if (error) {
+        toast.error(error.message);
+        setLoading(false);
+      }
+
+      if (data) {
+        router.push("/auth/sign-in");
+      }
     },
   });
 
@@ -90,7 +106,24 @@ function Form() {
         )}
       />
 
-      <form.Subscribe children={() => <Button type="submit">Sign In</Button>} />
+      <form.Subscribe
+        children={() => (
+          <Button type="submit" disabled={loading}>
+            {loading ? (
+              <>
+                <Icons.Loading
+                  className="-ms-1 animate-spin"
+                  size={16}
+                  aria-hidden="true"
+                />
+                Signing In
+              </>
+            ) : (
+              "Sign In"
+            )}
+          </Button>
+        )}
+      />
     </form>
   );
 }
