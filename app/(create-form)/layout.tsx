@@ -3,6 +3,8 @@ import { Metadata } from "next";
 import PublishBtn from "@/components/PublishBtn";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Create New Form",
@@ -25,7 +27,13 @@ export default async function Layout({
           <Logo />
 
           <div>
-            <PublishBtn userId={res?.user?.id} />
+            {res?.user.id ? (
+              <PublishBtn userId={res?.user?.id} />
+            ) : (
+              <Button asChild>
+                <Link href={"/auth/sign-in"}>Publish</Link>
+              </Button>
+            )}
           </div>
         </div>
       </header>
