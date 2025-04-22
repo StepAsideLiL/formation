@@ -1,6 +1,6 @@
 import Logo from "@/components/Logo";
-import { Button } from "@/components/ui/button";
 import { Metadata } from "next";
+import PublishBtn from "./new/_comps/PublishBtn";
 
 export const metadata: Metadata = {
   title: "Create New Form",
@@ -19,7 +19,7 @@ export default function Layout({
           <Logo />
 
           <div>
-            <Button className="cursor-pointer">Publish</Button>
+            <PublishBtn />
           </div>
         </div>
       </header>
