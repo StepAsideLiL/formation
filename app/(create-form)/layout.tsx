@@ -1,17 +1,23 @@
 import Logo from "@/components/Logo";
 import { Metadata } from "next";
 import PublishBtn from "./new/_comps/PublishBtn";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 export const metadata: Metadata = {
   title: "Create New Form",
   description: "Create new form by adding different types of fields",
 };
 
-export default function Layout({
+export default async function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const res = await auth.api.getSession({
+    headers: await headers(),
+  });
+
   return (
     <>
       <header className="border-b py-5">
@@ -19,7 +25,7 @@ export default function Layout({
           <Logo />
 
           <div>
-            <PublishBtn />
+            <PublishBtn userId={res?.user?.id} />
           </div>
         </div>
       </header>
