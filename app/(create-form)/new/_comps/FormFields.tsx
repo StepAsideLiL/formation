@@ -60,7 +60,7 @@ export default function FormFields() {
         items={formObj.map((f) => f.id as UniqueIdentifier)}
         strategy={verticalListSortingStrategy}
       >
-        <section className="space-y-5">
+        <section className="space-y-5 overflow-hidden">
           {formObj.map((field) => (
             <SortableItem key={field.id} field={field} />
           ))}
