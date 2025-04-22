@@ -24,7 +24,7 @@ export default function SignUp() {
 
       <p>
         Have an account?{" "}
-        <Link href={"/auth/sign-in"} className="underline">
+        <Link href={"/auth/sign-in"} replace className="underline">
           Sign In
         </Link>
       </p>
@@ -61,7 +61,7 @@ function Form() {
       }
 
       if (data) {
-        router.push("/auth/sign-in");
+        router.replace("/auth/sign-in");
       }
     },
   });
