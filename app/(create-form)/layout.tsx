@@ -1,6 +1,6 @@
 import Logo from "@/components/Logo";
 import { Metadata } from "next";
-import PublishBtn from "./new/_comps/PublishBtn";
+import PublishBtn from "@/components/PublishBtn";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
