@@ -4,10 +4,16 @@ import { TFormObj } from "@/lib/store";
 import { TResponse } from "@/lib/types";
 import prisma from "@/lib/prismadb";
 
+type TData = {
+  formDataId: string;
+  currentVariantId: string;
+  formObj: TFormObj[];
+} | null;
+
 export async function publishForm(
   formObj: TFormObj[],
   userId: string,
-): Promise<TResponse> {
+): Promise<TResponse<TData>> {
   const userExists = await prisma.user.findUnique({
     where: {
       id: userId,
@@ -21,7 +27,7 @@ export async function publishForm(
     };
   }
 
-  const formObjDB = await prisma.formData.create({
+  const formDataId = await prisma.formData.create({
     data: {
       formObj: JSON.stringify(formObj),
       user: {
@@ -32,8 +38,41 @@ export async function publishForm(
     },
   });
 
+  if (!formDataId) {
+    return {
+      error: {
+        message: "Failed to create!",
+      },
+      data: null,
+    };
+  }
+
+  const variant = await prisma.formVariant.create({
+    data: {
+      formObj: JSON.stringify(formObj),
+      formData: {
+        connect: {
+          id: formDataId.id,
+        },
+      },
+    },
+  });
+
+  if (!variant) {
+    return {
+      error: {
+        message: "Failed to create!",
+      },
+      data: null,
+    };
+  }
+
   return {
     error: null,
-    data: formObjDB,
+    data: {
+      formDataId: formDataId.id,
+      currentVariantId: variant.id,
+      formObj,
+    },
   };
 }
