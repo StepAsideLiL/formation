@@ -1,4 +1,6 @@
+import { RenderForm } from "@/components/render-field";
 import fetcher from "@/lib/fetcher";
+import { TFormObj } from "@/lib/store";
 
 export default async function page({
   params,
@@ -17,5 +19,11 @@ export default async function page({
     );
   }
 
-  return <main>page: {(await params).formId}</main>;
+  const formObj = JSON.parse(formObjDB.formObj) as TFormObj[];
+
+  return (
+    <main className="mx-auto w-full max-w-5xl py-5">
+      <RenderForm formObj={formObj} />
+    </main>
+  );
 }
