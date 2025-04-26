@@ -17,14 +17,14 @@ import Icons from "@/lib/icons";
 
 export function InputMetadateForm({ options }: { options: TFormSchema }) {
   const metadata = options?.metadata as TInputMetadata;
-  const [formObj, seTFormSchema] = useAtom(atoms.formSchemaAtom);
+  const [formSchema, setFormSchema] = useAtom(atoms.formSchemaAtom);
 
   function updateMetadata(metadata: TInputMetadata) {
-    const newFormObj = formObj.map((field) =>
+    const newFormSchema = formSchema.map((field) =>
       field.id === options.id ? { ...options, metadata: metadata } : field,
     );
 
-    seTFormSchema(newFormObj);
+    setFormSchema(newFormSchema);
   }
 
   return (
@@ -60,14 +60,14 @@ export function InputMetadateForm({ options }: { options: TFormSchema }) {
 
 export function TextareaMetadateForm({ options }: { options: TFormSchema }) {
   const metadata = options?.metadata as TInputMetadata;
-  const [formObj, seTFormSchema] = useAtom(atoms.formSchemaAtom);
+  const [formSchema, setFormSchema] = useAtom(atoms.formSchemaAtom);
 
   function updateMetadata(metadata: TInputMetadata) {
-    const newFormObj = formObj.map((field) =>
+    const newFormSchema = formSchema.map((field) =>
       field.id === options.id ? { ...options, metadata: metadata } : field,
     );
 
-    seTFormSchema(newFormObj);
+    setFormSchema(newFormSchema);
   }
 
   return (
@@ -103,14 +103,14 @@ export function TextareaMetadateForm({ options }: { options: TFormSchema }) {
 
 export function SelectMetadateForm({ options }: { options: TFormSchema }) {
   const metadata = options?.metadata as TSelectMetadata;
-  const [formObj, seTFormSchema] = useAtom(atoms.formSchemaAtom);
+  const [formSchema, setFormSchema] = useAtom(atoms.formSchemaAtom);
 
   function updateMetadata(metadata: TSelectMetadata) {
-    const newFormObj = formObj.map((field) =>
+    const newFormSchema = formSchema.map((field) =>
       field.id === options.id ? { ...options, metadata: metadata } : field,
     );
 
-    seTFormSchema(newFormObj);
+    setFormSchema(newFormSchema);
   }
 
   return (
@@ -237,14 +237,14 @@ export function SelectMetadateForm({ options }: { options: TFormSchema }) {
 
 export function CheckboxMetadataForm({ options }: { options: TFormSchema }) {
   const metadata = options?.metadata as TCheckboxMetadata;
-  const [formObj, seTFormSchema] = useAtom(atoms.formSchemaAtom);
+  const [formSchema, setFormSchema] = useAtom(atoms.formSchemaAtom);
 
   function updateMetadata(metadata: TCheckboxMetadata) {
-    const newFormObj = formObj.map((field) =>
+    const newFormSchema = formSchema.map((field) =>
       field.id === options.id ? { ...options, metadata: metadata } : field,
     );
 
-    seTFormSchema(newFormObj);
+    setFormSchema(newFormSchema);
   }
 
   return (
@@ -317,14 +317,14 @@ export function CheckboxMetadataForm({ options }: { options: TFormSchema }) {
 
 export function RadioMetadataForm({ options }: { options: TFormSchema }) {
   const metadata = options?.metadata as TRadioMetadata;
-  const [formObj, seTFormSchema] = useAtom(atoms.formSchemaAtom);
+  const [formSchema, setFormSchema] = useAtom(atoms.formSchemaAtom);
 
   function updateMetadata(metadata: TCheckboxMetadata) {
-    const newFormObj = formObj.map((field) =>
+    const newFormSchema = formSchema.map((field) =>
       field.id === options.id ? { ...options, metadata: metadata } : field,
     );
 
-    seTFormSchema(newFormObj);
+    setFormSchema(newFormSchema);
   }
 
   return (

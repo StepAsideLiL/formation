@@ -6,10 +6,10 @@ import atoms, { insertFormField } from "@/lib/store";
 import { useAtom } from "jotai";
 
 export default function AddFieldBtn() {
-  const [formObj, seTFormSchema] = useAtom(atoms.formSchemaAtom);
+  const [formSchema, setFormSchema] = useAtom(atoms.formSchemaAtom);
 
   return (
-    <Button onClick={() => seTFormSchema([...formObj, insertFormField()])}>
+    <Button onClick={() => setFormSchema([...formSchema, insertFormField()])}>
       <Icons.Plus /> Add Field
     </Button>
   );

@@ -63,38 +63,38 @@ export default function FieldOptionsForm({
 }: {
   options: TFormSchema;
 }) {
-  const [formObj, seTFormSchema] = useAtom(atoms.formSchemaAtom);
+  const [formSchema, setFormSchema] = useAtom(atoms.formSchemaAtom);
 
   function updateFieldType(value: TFieldsType) {
-    const newFormObj = formObj.map((field) =>
+    const newFormSchema = formSchema.map((field) =>
       field.id === options.id
         ? { ...options, fieldType: value, metadata: {} }
         : field,
     );
 
-    seTFormSchema(newFormObj);
+    setFormSchema(newFormSchema);
   }
 
   function updateFieldLabel(value: TFormSchema["label"]) {
-    const newFormObj = formObj.map((field) =>
+    const newFormSchema = formSchema.map((field) =>
       field.id === options.id ? { ...options, label: value } : field,
     );
 
-    seTFormSchema(newFormObj);
+    setFormSchema(newFormSchema);
   }
 
   function updateFieldRequired(checked: boolean) {
-    const newFormObj = formObj.map((field) =>
+    const newFormSchema = formSchema.map((field) =>
       field.id === options.id ? { ...options, required: checked } : field,
     );
 
-    seTFormSchema(newFormObj);
+    setFormSchema(newFormSchema);
   }
 
   function deleteField(fieldId: string) {
-    const newFormObj = formObj.filter((field) => field.id !== fieldId);
+    const newFormSchema = formSchema.filter((field) => field.id !== fieldId);
 
-    seTFormSchema(newFormObj);
+    setFormSchema(newFormSchema);
   }
 
   return (
