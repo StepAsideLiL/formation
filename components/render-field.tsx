@@ -17,25 +17,6 @@ import {
 } from "@/components/ui/select";
 import { Checkbox } from "./ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { cn } from "@/lib/utils";
-
-export function RenderForm({
-  formObj,
-  className,
-}: {
-  formObj: TFormObj[];
-  className?: string;
-}) {
-  return formObj.map((field, i) => (
-    <div key={i} className={cn("space-y-2", className)}>
-      {field.fieldType === "input" && <InputField field={field} />}
-      {field.fieldType === "textarea" && <TextareaField field={field} />}
-      {field.fieldType === "select" && <SelectField field={field} />}
-      {field.fieldType === "checkbox" && <CheckboxField field={field} />}
-      {field.fieldType === "radio" && <RadioField field={field} />}
-    </div>
-  ));
-}
 
 export function InputField({ field }: { field: TFormObj }) {
   const metadata = field.metadata as TInputMetadata;
