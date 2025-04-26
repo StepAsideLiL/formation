@@ -63,7 +63,7 @@ export default function FieldOptionsForm({
 }: {
   options: TFormSchema;
 }) {
-  const [formObj, seTFormSchema] = useAtom(atoms.formFieldsAtom);
+  const [formObj, seTFormSchema] = useAtom(atoms.formSchemaAtom);
 
   function updateFieldType(value: TFieldsType) {
     const newFormObj = formObj.map((field) =>

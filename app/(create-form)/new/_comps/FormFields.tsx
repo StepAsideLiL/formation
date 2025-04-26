@@ -32,7 +32,7 @@ import Icons from "@/lib/icons";
 import { Button } from "@/components/ui/button";
 
 export default function FormFields() {
-  const [formObj, setFromObj] = useAtom(atoms.formFieldsAtom);
+  const [formObj, setFromObj] = useAtom(atoms.formSchemaAtom);
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {

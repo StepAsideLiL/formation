@@ -57,10 +57,10 @@ export const insertFormField = (): TFormSchema => {
 };
 
 // formFields related atoms
-const formFieldsAtom = atomWithStorage<TFormSchema[]>("formFields", []);
+const formSchemaAtom = atomWithStorage<TFormSchema[]>("formSchema", []);
 
 const insertNewFieldAfterIdAtom = atom(null, (get, set, fieldId: string) => {
-  const formFields = get(formFieldsAtom);
+  const formFields = get(formSchemaAtom);
   const newFormFields: TFormSchema[] = [];
 
   for (let i = 0; i < formFields.length; i++) {
@@ -72,7 +72,7 @@ const insertNewFieldAfterIdAtom = atom(null, (get, set, fieldId: string) => {
     }
   }
 
-  set(formFieldsAtom, newFormFields);
+  set(formSchemaAtom, newFormFields);
 });
 
 // Form data related atoms
@@ -92,7 +92,7 @@ const insertFormValueInFormDataAtom = atom(
 );
 
 const atoms = {
-  formFieldsAtom,
+  formSchemaAtom,
   insertNewFieldAfterIdAtom,
   formDataAtom,
   insertFormValueInFormDataAtom,

@@ -17,7 +17,7 @@ import Icons from "@/lib/icons";
 
 export function InputMetadateForm({ options }: { options: TFormSchema }) {
   const metadata = options?.metadata as TInputMetadata;
-  const [formObj, seTFormSchema] = useAtom(atoms.formFieldsAtom);
+  const [formObj, seTFormSchema] = useAtom(atoms.formSchemaAtom);
 
   function updateMetadata(metadata: TInputMetadata) {
     const newFormObj = formObj.map((field) =>
@@ -60,7 +60,7 @@ export function InputMetadateForm({ options }: { options: TFormSchema }) {
 
 export function TextareaMetadateForm({ options }: { options: TFormSchema }) {
   const metadata = options?.metadata as TInputMetadata;
-  const [formObj, seTFormSchema] = useAtom(atoms.formFieldsAtom);
+  const [formObj, seTFormSchema] = useAtom(atoms.formSchemaAtom);
 
   function updateMetadata(metadata: TInputMetadata) {
     const newFormObj = formObj.map((field) =>
@@ -103,7 +103,7 @@ export function TextareaMetadateForm({ options }: { options: TFormSchema }) {
 
 export function SelectMetadateForm({ options }: { options: TFormSchema }) {
   const metadata = options?.metadata as TSelectMetadata;
-  const [formObj, seTFormSchema] = useAtom(atoms.formFieldsAtom);
+  const [formObj, seTFormSchema] = useAtom(atoms.formSchemaAtom);
 
   function updateMetadata(metadata: TSelectMetadata) {
     const newFormObj = formObj.map((field) =>
@@ -237,7 +237,7 @@ export function SelectMetadateForm({ options }: { options: TFormSchema }) {
 
 export function CheckboxMetadataForm({ options }: { options: TFormSchema }) {
   const metadata = options?.metadata as TCheckboxMetadata;
-  const [formObj, seTFormSchema] = useAtom(atoms.formFieldsAtom);
+  const [formObj, seTFormSchema] = useAtom(atoms.formSchemaAtom);
 
   function updateMetadata(metadata: TCheckboxMetadata) {
     const newFormObj = formObj.map((field) =>
@@ -317,7 +317,7 @@ export function CheckboxMetadataForm({ options }: { options: TFormSchema }) {
 
 export function RadioMetadataForm({ options }: { options: TFormSchema }) {
   const metadata = options?.metadata as TRadioMetadata;
-  const [formObj, seTFormSchema] = useAtom(atoms.formFieldsAtom);
+  const [formObj, seTFormSchema] = useAtom(atoms.formSchemaAtom);
 
   function updateMetadata(metadata: TCheckboxMetadata) {
     const newFormObj = formObj.map((field) =>
