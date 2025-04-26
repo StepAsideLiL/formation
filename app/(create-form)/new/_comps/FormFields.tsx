@@ -73,7 +73,9 @@ export default function FormFields() {
 function SortableItem({ field }: { field: TFormSchema }) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: field.id as UniqueIdentifier });
-  const [, insertFieldAfterById] = useAtom(atoms.insertNewFieldAfterIdAtom);
+  const [, insertFieldAfterById] = useAtom(
+    atoms.insertNewFieldAfterFieldIdAtom,
+  );
 
   const style = {
     transform: CSS.Transform.toString(transform),
