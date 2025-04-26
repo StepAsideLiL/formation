@@ -27,7 +27,7 @@ model User {
   username        String?
   displayUsername String?
 
-  formData FormData[]
+  forms Form[]
 
   @@unique([username])
   @@map("user")
@@ -78,10 +78,10 @@ model Verification {
   @@map("verification")
 }
 
-model FormData {
-  id           String        @id @unique @default(cuid())
-  formObj      String
-  formVariants FormVariant[]
+model Form {
+  id                 String              @id @unique @default(cuid())
+  formSchema         String
+  formSchemaVariants FormSchemaVariant[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -90,24 +90,24 @@ model FormData {
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model FormVariant {
-  id             String           @id @unique @default(cuid())
-  formObj        String
-  formSubmission FormSubmission[]
-  createdAt      DateTime         @default(now())
-  updatedAt      DateTime         @updatedAt
+model FormSchemaVariant {
+  id         String     @id @unique @default(cuid())
+  formSchema String
+  formData   FormData[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
 
-  formDataId String
-  formData   FormData @relation(fields: [formDataId], references: [id], onDelete: Cascade)
+  formId String
+  form   Form   @relation(fields: [formId], references: [id], onDelete: Cascade)
 }
 
-model FormSubmission {
-  id             String @id @unique @default(cuid())
-  submissionData String
+model FormData {
+  id       String @id @unique @default(cuid())
+  formData String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  formVariantId String
-  formVariant   FormVariant @relation(fields: [formVariantId], references: [id], onDelete: Cascade)
+  formSchemaVariantId String
+  formSchemaVariant   FormSchemaVariant @relation(fields: [formSchemaVariantId], references: [id], onDelete: Cascade)
 }

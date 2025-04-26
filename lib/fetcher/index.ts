@@ -3,7 +3,7 @@ import prisma from "@/lib/prismadb";
 
 const fetcher = {
   getFormData: async (formId: string) => {
-    return await prisma.formData.findUnique({
+    return await prisma.form.findUnique({
       where: {
         id: formId,
       },

@@ -5,13 +5,13 @@ import { TResponse } from "@/lib/types";
 import prisma from "@/lib/prismadb";
 
 type TData = {
-  formDataId: string;
+  formId: string;
   currentVariantId: string;
-  formObj: TFormSchema[];
+  formSchema: TFormSchema[];
 } | null;
 
 export async function publishForm(
-  formObj: TFormSchema[],
+  formSchema: TFormSchema[],
   userId: string,
 ): Promise<TResponse<TData>> {
   const userExists = await prisma.user.findUnique({
@@ -22,14 +22,16 @@ export async function publishForm(
 
   if (!userExists) {
     return {
-      error: new Error("User not found"),
+      error: {
+        message: "User not found",
+      },
       data: null,
     };
   }
 
-  const formDataId = await prisma.formData.create({
+  const form = await prisma.form.create({
     data: {
-      formObj: JSON.stringify(formObj),
+      formSchema: JSON.stringify(formSchema),
       user: {
         connect: {
           id: userId,
@@ -38,7 +40,7 @@ export async function publishForm(
     },
   });
 
-  if (!formDataId) {
+  if (!form) {
     return {
       error: {
         message: "Failed to create!",
@@ -47,12 +49,12 @@ export async function publishForm(
     };
   }
 
-  const variant = await prisma.formVariant.create({
+  const variant = await prisma.formSchemaVariant.create({
     data: {
-      formObj: JSON.stringify(formObj),
-      formData: {
+      formSchema: JSON.stringify(formSchema),
+      form: {
         connect: {
-          id: formDataId.id,
+          id: form.id,
         },
       },
     },
@@ -70,9 +72,9 @@ export async function publishForm(
   return {
     error: null,
     data: {
-      formDataId: formDataId.id,
+      formId: form.id,
       currentVariantId: variant.id,
-      formObj,
+      formSchema,
     },
   };
 }

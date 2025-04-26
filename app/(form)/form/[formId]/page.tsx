@@ -19,7 +19,7 @@ export default async function page({
     );
   }
 
-  const formObj = JSON.parse(formObjDB.formObj) as TFormSchema[];
+  const formObj = JSON.parse(formObjDB.formSchema) as TFormSchema[];
 
   return (
     <main className="mx-auto w-full max-w-5xl py-5">
