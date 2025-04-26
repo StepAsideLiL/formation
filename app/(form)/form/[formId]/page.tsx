@@ -7,7 +7,7 @@ export default async function page({
 }: {
   params: Promise<{ formId: string }>;
 }) {
-  const formObjDB = await fetcher.getFormData((await params).formId);
+  const formObjDB = await fetcher.getForm((await params).formId);
 
   if (!formObjDB) {
     return (
