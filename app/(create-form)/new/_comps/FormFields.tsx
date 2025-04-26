@@ -32,7 +32,7 @@ import Icons from "@/lib/icons";
 import { Button } from "@/components/ui/button";
 
 export default function FormFields() {
-  const [formObj, setFromObj] = useAtom(atoms.formSchemaAtom);
+  const [formSchema, setFromSchema] = useAtom(atoms.formSchemaAtom);
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -45,9 +45,9 @@ export default function FormFields() {
 
     if (!active || !over || active.id === over.id) return;
 
-    const oldIndex = formObj.findIndex((item) => item.id === active.id);
-    const newIndex = formObj.findIndex((item) => item.id === over.id);
-    setFromObj(arrayMove(formObj, oldIndex, newIndex));
+    const oldIndex = formSchema.findIndex((item) => item.id === active.id);
+    const newIndex = formSchema.findIndex((item) => item.id === over.id);
+    setFromSchema(arrayMove(formSchema, oldIndex, newIndex));
   }
 
   return (
@@ -57,11 +57,11 @@ export default function FormFields() {
       onDragEnd={handleDragEnd}
     >
       <SortableContext
-        items={formObj.map((f) => f.id as UniqueIdentifier)}
+        items={formSchema.map((f) => f.id as UniqueIdentifier)}
         strategy={verticalListSortingStrategy}
       >
         <section className="space-y-5 overflow-hidden">
-          {formObj.map((field) => (
+          {formSchema.map((field) => (
             <SortableItem key={field.id} field={field} />
           ))}
         </section>
@@ -73,7 +73,7 @@ export default function FormFields() {
 function SortableItem({ field }: { field: TFormSchema }) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: field.id as UniqueIdentifier });
-  const [, insertFieldAfterById] = useAtom(
+  const [, insertFieldAfterFieldId] = useAtom(
     atoms.insertNewFieldAfterFieldIdAtom,
   );
 
@@ -99,7 +99,7 @@ function SortableItem({ field }: { field: TFormSchema }) {
             variant={"ghost"}
             size={"icon"}
             className="cursor-pointer"
-            onClick={() => insertFieldAfterById(field.id)}
+            onClick={() => insertFieldAfterFieldId(field.id)}
           >
             <Icons.Plus size={16} />
           </Button>
