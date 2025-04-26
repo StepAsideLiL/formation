@@ -10,7 +10,7 @@ import { toast } from "sonner";
 
 export default function PublishBtn({ userId }: { userId: string | undefined }) {
   const [loading, setLoading] = useState(false);
-  const [formObj] = useAtom(atoms.formObjAtom);
+  const [formObj] = useAtom(atoms.formFieldsAtom);
 
   async function handlePublish() {
     if (!userId) {
