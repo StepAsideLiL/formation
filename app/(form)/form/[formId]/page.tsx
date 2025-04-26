@@ -1,4 +1,4 @@
-import { RenderForm } from "@/components/render-field";
+import { RenderForm } from "@/components/form-app/RenderForm";
 import fetcher from "@/lib/fetcher";
 import { TFormObj } from "@/lib/store";
 
