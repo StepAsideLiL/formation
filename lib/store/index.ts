@@ -56,19 +56,19 @@ export const insertFormField = (): TFormSchema => {
   };
 };
 
-// formObj related atoms
-const formObjAtom = atomWithStorage<TFormSchema[]>("formObj", []);
+// formFields related atoms
+const formObjAtom = atomWithStorage<TFormSchema[]>("formFields", []);
 
 const insertFieldAfterAtom = atom(null, (get, set, fieldId: string) => {
-  const formObj = get(formObjAtom);
+  const formFields = get(formObjAtom);
   const newFormObj: TFormSchema[] = [];
 
-  for (let i = 0; i < formObj.length; i++) {
-    if (formObj[i].id === fieldId) {
-      newFormObj.push(formObj[i]);
+  for (let i = 0; i < formFields.length; i++) {
+    if (formFields[i].id === fieldId) {
+      newFormObj.push(formFields[i]);
       newFormObj.push(insertFormField());
     } else {
-      newFormObj.push(formObj[i]);
+      newFormObj.push(formFields[i]);
     }
   }
 
