@@ -1,6 +1,6 @@
 import Logo from "@/components/Logo";
 import { Metadata } from "next";
-import PublishBtn from "@/components/PublishBtn";
+import PublishBtn from "@/components/form-app/PublishBtn";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import Link from "next/link";

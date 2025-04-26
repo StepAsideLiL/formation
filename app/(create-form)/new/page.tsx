@@ -1,5 +1,5 @@
-import AddFieldBtn from "./_comps/AddFieldBtn";
-import FormFields from "./_comps/FormFields";
+import AddFieldBtn from "@/components/form-app/AddFieldBtn";
+import FormFields from "@/components/form-app/FormFields";
 
 export default function Page() {
   return (
