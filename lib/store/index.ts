@@ -61,18 +61,18 @@ const formFieldsAtom = atomWithStorage<TFormSchema[]>("formFields", []);
 
 const insertNewFieldAfterIdAtom = atom(null, (get, set, fieldId: string) => {
   const formFields = get(formFieldsAtom);
-  const newFormObj: TFormSchema[] = [];
+  const newFormFields: TFormSchema[] = [];
 
   for (let i = 0; i < formFields.length; i++) {
     if (formFields[i].id === fieldId) {
-      newFormObj.push(formFields[i]);
-      newFormObj.push(insertFormField());
+      newFormFields.push(formFields[i]);
+      newFormFields.push(insertFormField());
     } else {
-      newFormObj.push(formFields[i]);
+      newFormFields.push(formFields[i]);
     }
   }
 
-  set(formFieldsAtom, newFormObj);
+  set(formFieldsAtom, newFormFields);
 });
 
 // Form submission data related atoms
