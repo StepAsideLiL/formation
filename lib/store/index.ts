@@ -41,6 +41,11 @@ export type TFormObj<
   metadata?: T;
 };
 
+export type TFormSubmissionData = {
+  id: string;
+  value: string;
+};
+
 export const insertFormObj = (): TFormObj => {
   return {
     id: fieldId(),
@@ -51,6 +56,7 @@ export const insertFormObj = (): TFormObj => {
   };
 };
 
+// formObj related atoms
 const formObjAtom = atomWithStorage<TFormObj[]>("formObj", []);
 
 const insertFieldAfterAtom = atom(null, (get, set, fieldId: string) => {
@@ -69,9 +75,33 @@ const insertFieldAfterAtom = atom(null, (get, set, fieldId: string) => {
   set(formObjAtom, newFormObj);
 });
 
+// Form submission data related atoms
+const formSubmissionDataAtom = atomWithStorage<TFormSubmissionData[]>(
+  "formSub",
+  [],
+);
+
+const insertFormSubmissionDataAtom = atom(
+  null,
+  (get, set, newFormSubmissionData: TFormSubmissionData) => {
+    const formSubmissionDatas = get(formSubmissionDataAtom);
+
+    const newFormSubmissionDatas = formSubmissionDatas.map(
+      (formSubmissionData) =>
+        formSubmissionData.id === newFormSubmissionData.id
+          ? newFormSubmissionData
+          : formSubmissionData,
+    );
+
+    set(formSubmissionDataAtom, newFormSubmissionDatas);
+  },
+);
+
 const atoms = {
   formObjAtom,
   insertFieldAfterAtom,
+  formSubmissionDataAtom,
+  insertFormSubmissionDataAtom,
 };
 
 export default atoms;
