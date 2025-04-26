@@ -56,7 +56,7 @@ export const insertFormField = (): TFormSchema => {
   };
 };
 
-// formFields related atoms
+// Form schema related atoms
 const formSchemaAtom = atomWithStorage<TFormSchema[]>("formSchema", []);
 
 const insertNewFieldAfterFieldIdAtom = atom(
