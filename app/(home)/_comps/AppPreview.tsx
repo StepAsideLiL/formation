@@ -19,13 +19,13 @@ import Icons from "@/lib/icons";
 import {
   TCheckboxMetadata,
   TFieldsType,
-  TFormObj,
+  TFormSchema,
   TInputMetadata,
   TRadioMetadata,
   TSelectMetadata,
 } from "@/lib/store";
 
-const formObj: TFormObj[] = [
+const formObj: TFormSchema[] = [
   {
     id: "6pc9DFQQWn",
     label: "Name",
@@ -255,7 +255,7 @@ function RenderFormFields() {
   );
 }
 
-function InputMetadateForm({ options }: { options: TFormObj }) {
+function InputMetadateForm({ options }: { options: TFormSchema }) {
   const metadata = options?.metadata as TInputMetadata;
 
   return (
@@ -277,7 +277,7 @@ function InputMetadateForm({ options }: { options: TFormObj }) {
   );
 }
 
-function TextareaMetadateForm({ options }: { options: TFormObj }) {
+function TextareaMetadateForm({ options }: { options: TFormSchema }) {
   const metadata = options?.metadata as TInputMetadata;
 
   return (
@@ -299,7 +299,7 @@ function TextareaMetadateForm({ options }: { options: TFormObj }) {
   );
 }
 
-function SelectMetadateForm({ options }: { options: TFormObj }) {
+function SelectMetadateForm({ options }: { options: TFormSchema }) {
   const metadata = options?.metadata as TSelectMetadata;
 
   return (
@@ -371,7 +371,7 @@ function SelectMetadateForm({ options }: { options: TFormObj }) {
   );
 }
 
-function CheckboxMetadataForm({ options }: { options: TFormObj }) {
+function CheckboxMetadataForm({ options }: { options: TFormSchema }) {
   const metadata = options?.metadata as TCheckboxMetadata;
 
   return (
@@ -413,7 +413,7 @@ function CheckboxMetadataForm({ options }: { options: TFormObj }) {
   );
 }
 
-function RadioMetadataForm({ options }: { options: TFormObj }) {
+function RadioMetadataForm({ options }: { options: TFormSchema }) {
   const metadata = options?.metadata as TRadioMetadata;
 
   return (
@@ -455,7 +455,7 @@ function RadioMetadataForm({ options }: { options: TFormObj }) {
   );
 }
 
-export function InputField({ field }: { field: TFormObj }) {
+export function InputField({ field }: { field: TFormSchema }) {
   const metadata = field.metadata as TInputMetadata;
 
   if (field.label === "") {
@@ -480,7 +480,7 @@ export function InputField({ field }: { field: TFormObj }) {
   );
 }
 
-function TextareaField({ field }: { field: TFormObj }) {
+function TextareaField({ field }: { field: TFormSchema }) {
   const metadata = field.metadata as TInputMetadata;
 
   if (field.label === "") {
@@ -505,7 +505,7 @@ function TextareaField({ field }: { field: TFormObj }) {
   );
 }
 
-function SelectField({ field }: { field: TFormObj }) {
+function SelectField({ field }: { field: TFormSchema }) {
   const metadata = field.metadata as TSelectMetadata;
 
   if (field.label === "") {
@@ -536,7 +536,7 @@ function SelectField({ field }: { field: TFormObj }) {
   );
 }
 
-function CheckboxField({ field }: { field: TFormObj }) {
+function CheckboxField({ field }: { field: TFormSchema }) {
   const metadata = field.metadata as TCheckboxMetadata;
 
   if (field.label === "") {
@@ -572,7 +572,7 @@ function CheckboxField({ field }: { field: TFormObj }) {
   );
 }
 
-function RadioField({ field }: { field: TFormObj }) {
+function RadioField({ field }: { field: TFormSchema }) {
   const metadata = field.metadata as TRadioMetadata;
 
   if (field.label === "") {

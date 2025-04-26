@@ -1,6 +1,6 @@
 import { RenderForm } from "@/components/form-app/RenderForm";
 import fetcher from "@/lib/fetcher";
-import { TFormObj } from "@/lib/store";
+import { TFormSchema } from "@/lib/store";
 
 export default async function page({
   params,
@@ -19,7 +19,7 @@ export default async function page({
     );
   }
 
-  const formObj = JSON.parse(formObjDB.formObj) as TFormObj[];
+  const formObj = JSON.parse(formObjDB.formObj) as TFormSchema[];
 
   return (
     <main className="mx-auto w-full max-w-5xl py-5">

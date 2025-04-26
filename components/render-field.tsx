@@ -2,7 +2,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
   TCheckboxMetadata,
-  TFormObj,
+  TFormSchema,
   TInputMetadata,
   TRadioMetadata,
   TSelectMetadata,
@@ -18,7 +18,7 @@ import {
 import { Checkbox } from "./ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
-export function InputField({ field }: { field: TFormObj }) {
+export function InputField({ field }: { field: TFormSchema }) {
   const metadata = field.metadata as TInputMetadata;
 
   if (field.label === "") {
@@ -43,7 +43,7 @@ export function InputField({ field }: { field: TFormObj }) {
   );
 }
 
-export function TextareaField({ field }: { field: TFormObj }) {
+export function TextareaField({ field }: { field: TFormSchema }) {
   const metadata = field.metadata as TInputMetadata;
 
   if (field.label === "") {
@@ -68,7 +68,7 @@ export function TextareaField({ field }: { field: TFormObj }) {
   );
 }
 
-export function SelectField({ field }: { field: TFormObj }) {
+export function SelectField({ field }: { field: TFormSchema }) {
   const metadata = field.metadata as TSelectMetadata;
 
   if (field.label === "") {
@@ -99,7 +99,7 @@ export function SelectField({ field }: { field: TFormObj }) {
   );
 }
 
-export function CheckboxField({ field }: { field: TFormObj }) {
+export function CheckboxField({ field }: { field: TFormSchema }) {
   const metadata = field.metadata as TCheckboxMetadata;
 
   if (field.label === "") {
@@ -135,7 +135,7 @@ export function CheckboxField({ field }: { field: TFormObj }) {
   );
 }
 
-export function RadioField({ field }: { field: TFormObj }) {
+export function RadioField({ field }: { field: TFormSchema }) {
   const metadata = field.metadata as TRadioMetadata;
 
   if (field.label === "") {

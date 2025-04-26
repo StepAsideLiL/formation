@@ -1,17 +1,17 @@
 "use server";
 
-import { TFormObj } from "@/lib/store";
+import { TFormSchema } from "@/lib/store";
 import { TResponse } from "@/lib/types";
 import prisma from "@/lib/prismadb";
 
 type TData = {
   formDataId: string;
   currentVariantId: string;
-  formObj: TFormObj[];
+  formObj: TFormSchema[];
 } | null;
 
 export async function publishForm(
-  formObj: TFormObj[],
+  formObj: TFormSchema[],
   userId: string,
 ): Promise<TResponse<TData>> {
   const userExists = await prisma.user.findUnique({

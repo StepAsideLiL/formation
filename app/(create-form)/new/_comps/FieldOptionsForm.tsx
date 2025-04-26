@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import Icons from "@/lib/icons";
-import atoms, { TFieldsType, TFormObj } from "@/lib/store";
+import atoms, { TFieldsType, TFormSchema } from "@/lib/store";
 import { useAtom } from "jotai";
 import {
   CheckboxMetadataForm,
@@ -58,8 +58,12 @@ const fieldTypesMeta = {
   },
 };
 
-export default function FieldOptionsForm({ options }: { options: TFormObj }) {
-  const [formObj, setFormObj] = useAtom(atoms.formObjAtom);
+export default function FieldOptionsForm({
+  options,
+}: {
+  options: TFormSchema;
+}) {
+  const [formObj, seTFormSchema] = useAtom(atoms.formObjAtom);
 
   function updateFieldType(value: TFieldsType) {
     const newFormObj = formObj.map((field) =>
@@ -68,15 +72,15 @@ export default function FieldOptionsForm({ options }: { options: TFormObj }) {
         : field,
     );
 
-    setFormObj(newFormObj);
+    seTFormSchema(newFormObj);
   }
 
-  function updateFieldLabel(value: TFormObj["label"]) {
+  function updateFieldLabel(value: TFormSchema["label"]) {
     const newFormObj = formObj.map((field) =>
       field.id === options.id ? { ...options, label: value } : field,
     );
 
-    setFormObj(newFormObj);
+    seTFormSchema(newFormObj);
   }
 
   function updateFieldRequired(checked: boolean) {
@@ -84,13 +88,13 @@ export default function FieldOptionsForm({ options }: { options: TFormObj }) {
       field.id === options.id ? { ...options, required: checked } : field,
     );
 
-    setFormObj(newFormObj);
+    seTFormSchema(newFormObj);
   }
 
   function deleteField(fieldId: string) {
     const newFormObj = formObj.filter((field) => field.id !== fieldId);
 
-    setFormObj(newFormObj);
+    seTFormSchema(newFormObj);
   }
 
   return (
@@ -104,7 +108,7 @@ export default function FieldOptionsForm({ options }: { options: TFormObj }) {
               id="is-required"
               className="cursor-pointer"
               checked={options.required}
-              onCheckedChange={(checked: TFormObj["required"]) =>
+              onCheckedChange={(checked: TFormSchema["required"]) =>
                 updateFieldRequired(checked)
               }
             />

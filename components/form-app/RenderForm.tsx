@@ -6,13 +6,13 @@ import {
   SelectField,
   TextareaField,
 } from "./fields";
-import { TFormObj } from "@/lib/store";
+import { TFormSchema } from "@/lib/store";
 
 export function RenderForm({
   formObj,
   className,
 }: {
-  formObj: TFormObj[];
+  formObj: TFormSchema[];
   className?: string;
 }) {
   return formObj.map((field, i) => (

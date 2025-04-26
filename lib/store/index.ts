@@ -31,7 +31,7 @@ export type TRadioMetadata = {
   options?: string[];
 };
 
-export type TFormObj<
+export type TFormSchema<
   T = TInputMetadata | TSelectMetadata | TCheckboxMetadata | TRadioMetadata,
 > = {
   id: string;
@@ -46,7 +46,7 @@ export type TFormSubmissionData = {
   value: string;
 };
 
-export const insertFormObj = (): TFormObj => {
+export const inserTFormSchema = (): TFormSchema => {
   return {
     id: fieldId(),
     label: "",
@@ -57,16 +57,16 @@ export const insertFormObj = (): TFormObj => {
 };
 
 // formObj related atoms
-const formObjAtom = atomWithStorage<TFormObj[]>("formObj", []);
+const formObjAtom = atomWithStorage<TFormSchema[]>("formObj", []);
 
 const insertFieldAfterAtom = atom(null, (get, set, fieldId: string) => {
   const formObj = get(formObjAtom);
-  const newFormObj: TFormObj[] = [];
+  const newFormObj: TFormSchema[] = [];
 
   for (let i = 0; i < formObj.length; i++) {
     if (formObj[i].id === fieldId) {
       newFormObj.push(formObj[i]);
-      newFormObj.push(insertFormObj());
+      newFormObj.push(inserTFormSchema());
     } else {
       newFormObj.push(formObj[i]);
     }
