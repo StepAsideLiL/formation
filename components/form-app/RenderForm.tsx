@@ -9,13 +9,13 @@ import {
 import { TFormSchema } from "@/lib/store";
 
 export function RenderForm({
-  formObj,
+  formSchema,
   className,
 }: {
-  formObj: TFormSchema[];
+  formSchema: TFormSchema[];
   className?: string;
 }) {
-  return formObj.map((field, i) => (
+  return formSchema.map((field, i) => (
     <div key={i} className={cn("space-y-2", className)}>
       {field.fieldType === "input" && <InputField field={field} />}
       {field.fieldType === "textarea" && <TextareaField field={field} />}

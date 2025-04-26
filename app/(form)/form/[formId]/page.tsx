@@ -7,9 +7,9 @@ export default async function page({
 }: {
   params: Promise<{ formId: string }>;
 }) {
-  const formObjDB = await fetcher.getForm((await params).formId);
+  const form = await fetcher.getForm((await params).formId);
 
-  if (!formObjDB) {
+  if (!form) {
     return (
       <main className="mx-auto w-full max-w-5xl py-10">
         <h1 className="text-muted-foreground text-center text-xl">
@@ -19,11 +19,11 @@ export default async function page({
     );
   }
 
-  const formObj = JSON.parse(formObjDB.formSchema) as TFormSchema[];
+  const formSchema = JSON.parse(form.formSchema) as TFormSchema[];
 
   return (
     <main className="mx-auto w-full max-w-5xl py-5">
-      <RenderForm formObj={formObj} />
+      <RenderForm formSchema={formSchema} />
     </main>
   );
 }
