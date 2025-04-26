@@ -46,7 +46,7 @@ export type TFormSubmissionData = {
   value: string;
 };
 
-export const inserTFormSchema = (): TFormSchema => {
+export const insertFormField = (): TFormSchema => {
   return {
     id: fieldId(),
     label: "",
@@ -66,7 +66,7 @@ const insertFieldAfterAtom = atom(null, (get, set, fieldId: string) => {
   for (let i = 0; i < formObj.length; i++) {
     if (formObj[i].id === fieldId) {
       newFormObj.push(formObj[i]);
-      newFormObj.push(inserTFormSchema());
+      newFormObj.push(insertFormField());
     } else {
       newFormObj.push(formObj[i]);
     }
