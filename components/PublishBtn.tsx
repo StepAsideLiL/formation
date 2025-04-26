@@ -10,7 +10,7 @@ import { toast } from "sonner";
 
 export default function PublishBtn({ userId }: { userId: string | undefined }) {
   const [loading, setLoading] = useState(false);
-  const [formObj] = useAtom(atoms.formSchemaAtom);
+  const [formschema] = useAtom(atoms.formSchemaAtom);
 
   async function handlePublish() {
     if (!userId) {
@@ -20,7 +20,7 @@ export default function PublishBtn({ userId }: { userId: string | undefined }) {
 
     setLoading(true);
 
-    const { error, data } = await publishForm(formObj, userId);
+    const { error, data } = await publishForm(formschema, userId);
 
     if (error) {
       toast.error(error.message);
