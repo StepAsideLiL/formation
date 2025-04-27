@@ -18,24 +18,24 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
-export function InputField({ field }: { field: TFormSchema }) {
-  const metadata = field.metadata as TInputMetadata;
+export function InputField({ schema }: { schema: TFormSchema }) {
+  const metadata = schema.metadata as TInputMetadata;
 
-  if (field.label === "") {
+  if (schema.label === "") {
     return null;
   }
 
   return (
     <div>
-      <Label htmlFor={field.id} className="mb-2">
-        {field.label}
-        {field.required ? <span className="text-destructive">*</span> : ""}
+      <Label htmlFor={schema.id} className="mb-2">
+        {schema.label}
+        {schema.required ? <span className="text-destructive">*</span> : ""}
       </Label>
       <Input
-        id={field.id}
+        id={schema.id}
         type="text"
         placeholder={metadata.placeholder}
-        required={field.required}
+        required={schema.required}
         className="mb-1"
       />
       <p className="text-xs">{metadata.description}</p>
@@ -43,24 +43,24 @@ export function InputField({ field }: { field: TFormSchema }) {
   );
 }
 
-export function TextareaField({ field }: { field: TFormSchema }) {
-  const metadata = field.metadata as TInputMetadata;
+export function TextareaField({ schema }: { schema: TFormSchema }) {
+  const metadata = schema.metadata as TInputMetadata;
 
-  if (field.label === "") {
+  if (schema.label === "") {
     return null;
   }
 
   return (
     <div>
-      <Label htmlFor={field.id} className="mb-2">
-        {field.label}
-        {field.required ? <span className="text-destructive">*</span> : ""}
+      <Label htmlFor={schema.id} className="mb-2">
+        {schema.label}
+        {schema.required ? <span className="text-destructive">*</span> : ""}
       </Label>
       <Textarea
-        id={field.id}
+        id={schema.id}
         placeholder={metadata.placeholder}
         rows={5}
-        required={field.required}
+        required={schema.required}
         className="mb-1"
       />
       <p className="text-xs">{metadata.description}</p>
@@ -68,25 +68,25 @@ export function TextareaField({ field }: { field: TFormSchema }) {
   );
 }
 
-export function SelectField({ field }: { field: TFormSchema }) {
-  const metadata = field.metadata as TSelectMetadata;
+export function SelectField({ schema }: { schema: TFormSchema }) {
+  const metadata = schema.metadata as TSelectMetadata;
 
-  if (field.label === "") {
+  if (schema.label === "") {
     return null;
   }
 
   return (
     <div>
-      <Label htmlFor={field.id} className="mb-2">
-        {field.label}
-        {field.required ? <span className="text-destructive">*</span> : ""}
+      <Label htmlFor={schema.id} className="mb-2">
+        {schema.label}
+        {schema.required ? <span className="text-destructive">*</span> : ""}
       </Label>
-      <Select required={field.required}>
-        <SelectTrigger id={field.id} className="w-full cursor-pointer">
-          <SelectValue id={field.id} placeholder={metadata.placeholder} />
+      <Select required={schema.required}>
+        <SelectTrigger id={schema.id} className="w-full cursor-pointer">
+          <SelectValue id={schema.id} placeholder={metadata.placeholder} />
         </SelectTrigger>
 
-        <SelectContent id={field.id}>
+        <SelectContent id={schema.id}>
           {metadata.options?.map((option, i) => (
             <SelectItem key={i} value={option} className="cursor-pointer">
               {option}
@@ -99,19 +99,19 @@ export function SelectField({ field }: { field: TFormSchema }) {
   );
 }
 
-export function CheckboxField({ field }: { field: TFormSchema }) {
-  const metadata = field.metadata as TCheckboxMetadata;
+export function CheckboxField({ schema }: { schema: TFormSchema }) {
+  const metadata = schema.metadata as TCheckboxMetadata;
 
-  if (field.label === "") {
+  if (schema.label === "") {
     return null;
   }
 
   return (
     <div>
       <div className="mb-2">
-        <Label htmlFor={field.id}>
-          {field.label}
-          {field.required ? <span className="text-destructive">*</span> : ""}
+        <Label htmlFor={schema.id}>
+          {schema.label}
+          {schema.required ? <span className="text-destructive">*</span> : ""}
         </Label>
         {(metadata?.description || metadata?.description?.length !== 0) && (
           <p className="text-xs">{metadata.description}</p>
@@ -122,7 +122,7 @@ export function CheckboxField({ field }: { field: TFormSchema }) {
           <div key={i} className="flex items-center gap-1">
             <Checkbox
               id={`${i}`}
-              required={field.required}
+              required={schema.required}
               className="cursor-pointer"
             />
             <Label htmlFor={`${i}`} className="cursor-pointer font-normal">
@@ -135,26 +135,26 @@ export function CheckboxField({ field }: { field: TFormSchema }) {
   );
 }
 
-export function RadioField({ field }: { field: TFormSchema }) {
-  const metadata = field.metadata as TRadioMetadata;
+export function RadioField({ schema }: { schema: TFormSchema }) {
+  const metadata = schema.metadata as TRadioMetadata;
 
-  if (field.label === "") {
+  if (schema.label === "") {
     return null;
   }
 
   return (
     <div>
       <div className="mb-2">
-        <Label htmlFor={field.id}>
-          {field.label}
-          {field.required ? <span className="text-destructive">*</span> : ""}
+        <Label htmlFor={schema.id}>
+          {schema.label}
+          {schema.required ? <span className="text-destructive">*</span> : ""}
         </Label>
         {(metadata?.description || metadata?.description?.length !== 0) && (
           <p className="text-xs">{metadata.description}</p>
         )}
       </div>
       <div className="space-y-1">
-        <RadioGroup required={field.required}>
+        <RadioGroup required={schema.required}>
           {metadata.options?.map((option, i) => (
             <div key={i} className="flex items-center gap-1">
               <RadioGroupItem

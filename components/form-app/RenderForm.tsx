@@ -20,11 +20,11 @@ export function RenderForm({
     <div className={cn("space-y-4", className)}>
       {formSchema.map((field, i) => (
         <Fragment key={i}>
-          {field.fieldType === "input" && <InputField field={field} />}
-          {field.fieldType === "textarea" && <TextareaField field={field} />}
-          {field.fieldType === "select" && <SelectField field={field} />}
-          {field.fieldType === "checkbox" && <CheckboxField field={field} />}
-          {field.fieldType === "radio" && <RadioField field={field} />}
+          {field.fieldType === "input" && <InputField schema={field} />}
+          {field.fieldType === "textarea" && <TextareaField schema={field} />}
+          {field.fieldType === "select" && <SelectField schema={field} />}
+          {field.fieldType === "checkbox" && <CheckboxField schema={field} />}
+          {field.fieldType === "radio" && <RadioField schema={field} />}
         </Fragment>
       ))}
     </div>
