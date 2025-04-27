@@ -1,6 +1,6 @@
 "use client";
 
-import atoms, { TFormSchema } from "@/lib/store";
+import atoms, { atomSet, TFormSchema } from "@/lib/store";
 import { useAtom } from "jotai";
 import FieldOptionsForm from "./FieldOptionsForm";
 import {
@@ -73,9 +73,7 @@ export default function FormFields() {
 function SortableItem({ field }: { field: TFormSchema }) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id: field.id as UniqueIdentifier });
-  const [, insertFieldAfterFieldId] = useAtom(
-    atoms.insertNewFieldAfterFieldIdAtom,
-  );
+  const insertFieldAfterFieldId = atomSet.NewFieldAfterFieldId();
 
   const style = {
     transform: CSS.Transform.toString(transform),

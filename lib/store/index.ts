@@ -1,4 +1,4 @@
-import { atom } from "jotai";
+import { atom, useAtom } from "jotai";
 import { atomWithStorage } from "jotai/utils";
 import { fieldId } from "../utils";
 
@@ -94,11 +94,24 @@ const insertFormValueInFormDataAtom = atom(
   },
 );
 
+function NewFieldAfterFieldId() {
+  const [, set] = useAtom(insertNewFieldAfterFieldIdAtom);
+  return set;
+}
+
+function FormValueInFormData() {
+  const [, set] = useAtom(insertFormValueInFormDataAtom);
+  return set;
+}
+
 const atoms = {
   formSchemaAtom,
-  insertNewFieldAfterFieldIdAtom,
   formDataAtom,
-  insertFormValueInFormDataAtom,
+};
+
+export const atomSet = {
+  NewFieldAfterFieldId,
+  FormValueInFormData,
 };
 
 export default atoms;
