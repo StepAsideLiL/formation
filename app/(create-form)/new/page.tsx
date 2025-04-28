@@ -1,5 +1,6 @@
 import AddFieldBtn from "@/components/form-app/AddFieldBtn";
 import FormFields from "@/components/form-app/FormFields";
+import TitleAndDescription from "@/components/form-app/TitleAndDescription";
 
 export default function Page() {
   return (
@@ -8,7 +9,11 @@ export default function Page() {
         <div className="mx-auto w-5xl">
           <h1 className="font-medium">Edit Form</h1>
         </div>
+
+        <TitleAndDescription />
+
         <FormFields />
+
         <div className="mx-auto w-5xl">
           <AddFieldBtn />
         </div>

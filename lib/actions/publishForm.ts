@@ -1,6 +1,6 @@
 "use server";
 
-import { TFormSchema } from "@/lib/store";
+import { TForm, TFormSchema } from "@/lib/store";
 import { TResponse } from "@/lib/types";
 import prisma from "@/lib/prismadb";
 
@@ -11,6 +11,7 @@ type TData = {
 } | null;
 
 export async function publishForm(
+  formInfo: TForm,
   formSchema: TFormSchema[],
   userId: string,
 ): Promise<TResponse<TData>> {
@@ -31,6 +32,8 @@ export async function publishForm(
 
   const form = await prisma.form.create({
     data: {
+      title: formInfo.title,
+      description: formInfo.description,
       formSchema: JSON.stringify(formSchema),
       user: {
         connect: {

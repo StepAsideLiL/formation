@@ -31,6 +31,11 @@ export type TRadioMetadata = {
   options?: string[];
 };
 
+export type TForm = {
+  title: string;
+  description: string;
+};
+
 export type TFormSchema<
   T = TInputMetadata | TSelectMetadata | TCheckboxMetadata | TRadioMetadata,
 > = {
@@ -55,6 +60,12 @@ export const insertFormField = (): TFormSchema => {
     metadata: {},
   };
 };
+
+// Form title and description related atoms
+const formAtom = atomWithStorage<TForm>("form", {
+  title: "",
+  description: "",
+});
 
 // Form schema related atoms
 const formSchemaAtom = atomWithStorage<TFormSchema[]>("formSchema", []);
@@ -105,6 +116,7 @@ function FormValueInFormData() {
 }
 
 const atoms = {
+  formAtom,
   formSchemaAtom,
   formDataAtom,
 };
