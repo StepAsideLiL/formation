@@ -2,6 +2,24 @@ import { RenderForm } from "@/components/form-app/RenderForm";
 import fetcher from "@/lib/fetcher";
 import { TFormSchema } from "@/lib/store";
 
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ formId: string }>;
+}) {
+  const form = await fetcher.getForm((await params).formId);
+
+  if (!form) {
+    return {
+      title: "Invaild Form",
+    };
+  }
+
+  return {
+    title: form?.title,
+  };
+}
+
 export default async function page({
   params,
 }: {
