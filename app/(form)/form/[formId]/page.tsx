@@ -40,7 +40,8 @@ export default async function page({
   const formSchema = JSON.parse(form.formSchema) as TFormSchema[];
 
   return (
-    <main className="mx-auto w-full max-w-5xl py-5">
+    <main className="mx-auto w-full max-w-5xl space-y-5 py-5">
+      <h1 className="text-2xl">{form.title}</h1>
       <RenderForm formSchema={formSchema} />
     </main>
   );
