@@ -1,4 +1,5 @@
 import { RenderForm } from "@/components/form-app/RenderForm";
+import RenderRichText from "@/components/richtext-app/RenderRichText";
 import fetcher from "@/lib/fetcher";
 import { TFormSchema } from "@/lib/store";
 
@@ -42,6 +43,8 @@ export default async function page({
   return (
     <main className="mx-auto w-full max-w-5xl space-y-5 py-5">
       <h1 className="text-2xl">{form.title}</h1>
+      <RenderRichText content={form.description} />
+
       <RenderForm formSchema={formSchema} />
     </main>
   );
