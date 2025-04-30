@@ -12,6 +12,20 @@ const fetcher = {
       },
     });
   }),
+  getFormInfoById: cache(async (formId: string) => {
+    return await prisma.form.findUnique({
+      where: {
+        id: formId,
+      },
+      include: {
+        formSchemaVariants: {
+          include: {
+            formData: true,
+          },
+        },
+      },
+    });
+  }),
   getSignedInUserForm: cache(async () => {
     const session = await auth.api.getSession({
       headers: await headers(),
