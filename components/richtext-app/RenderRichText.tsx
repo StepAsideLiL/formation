@@ -5,6 +5,7 @@ import StarterKit from "@tiptap/starter-kit";
 
 export default function RenderRichText({ content }: { content: string }) {
   const editor = useEditor({
+    editable: false,
     extensions: [StarterKit],
     content: content,
     editorProps: {
