@@ -8,7 +8,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ formId: string }>;
 }) {
-  const form = await fetcher.getForm((await params).formId);
+  const form = await fetcher.getFormById((await params).formId);
 
   if (!form) {
     return {
@@ -26,7 +26,7 @@ export default async function page({
 }: {
   params: Promise<{ formId: string }>;
 }) {
-  const form = await fetcher.getForm((await params).formId);
+  const form = await fetcher.getFormById((await params).formId);
 
   if (!form) {
     return (

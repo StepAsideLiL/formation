@@ -5,7 +5,7 @@ import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 
 const fetcher = {
-  getForm: cache(async (formId: string) => {
+  getFormById: cache(async (formId: string) => {
     return await prisma.form.findUnique({
       where: {
         id: formId,
