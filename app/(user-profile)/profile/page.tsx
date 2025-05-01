@@ -1,3 +1,4 @@
+import date from "@/lib/date";
 import fetcher from "@/lib/fetcher";
 import { Metadata, Route } from "next";
 import Link from "next/link";
@@ -30,7 +31,7 @@ export default async function page() {
               >
                 <h1 className="text-xl">{form.title}</h1>
                 <p className="text-muted-foreground text-sm">
-                  Created At {new Date(form.createdAt).toLocaleString()}
+                  Created At {date.format(new Date(form.createdAt))}
                 </p>
               </Link>
             ))}

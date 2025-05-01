@@ -1,3 +1,4 @@
+import date from "@/lib/date";
 import fetcher from "@/lib/fetcher";
 
 export default async function Page({
@@ -31,7 +32,7 @@ export default async function Page({
             <div className="grid grid-cols-12">
               <span className="col-span-2">Create At</span>
               <span className="col-span-10">
-                {new Date(variant.createdAt).toLocaleString()}
+                {date.format(new Date(variant.createdAt))}
               </span>
             </div>
             <div className="grid grid-cols-12">
