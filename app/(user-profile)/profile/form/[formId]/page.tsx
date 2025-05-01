@@ -30,7 +30,7 @@ export default async function Page({
               <span className="col-span-10">{variant.id}</span>
             </div>
             <div className="grid grid-cols-12">
-              <span className="col-span-2">Create At</span>
+              <span className="col-span-2">Created At</span>
               <span className="col-span-10">
                 {date.format(new Date(variant.createdAt))}
               </span>
