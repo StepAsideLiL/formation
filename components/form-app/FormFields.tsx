@@ -82,7 +82,7 @@ function SortableItem({ field }: { field: TFormSchema }) {
 
   return (
     <div ref={setNodeRef} style={style} className="group">
-      <div className="relative mx-auto flex w-5xl items-start gap-5">
+      <div className="relative mx-auto w-5xl">
         <div className="absolute top-0 -left-10 hidden flex-col group-hover:flex">
           <Button
             variant={"ghost"}
@@ -103,30 +103,32 @@ function SortableItem({ field }: { field: TFormSchema }) {
           </Button>
         </div>
 
-        <div className="w-1/2">
-          <FieldOptionsForm options={field} />
-        </div>
+        <div className="bg-background flex w-full items-start gap-5">
+          <div className="w-1/2">
+            <FieldOptionsForm options={field} />
+          </div>
 
-        <div className="w-1/2">
-          {field.fieldType === "input" && (
-            <InputField key={field.id} field={field} />
-          )}
+          <div className="w-1/2">
+            {field.fieldType === "input" && (
+              <InputField key={field.id} field={field} />
+            )}
 
-          {field.fieldType === "textarea" && (
-            <TextareaField key={field.id} field={field} />
-          )}
+            {field.fieldType === "textarea" && (
+              <TextareaField key={field.id} field={field} />
+            )}
 
-          {field.fieldType === "select" && (
-            <SelectField key={field.id} field={field} />
-          )}
+            {field.fieldType === "select" && (
+              <SelectField key={field.id} field={field} />
+            )}
 
-          {field.fieldType === "checkbox" && (
-            <CheckboxField key={field.id} field={field} />
-          )}
+            {field.fieldType === "checkbox" && (
+              <CheckboxField key={field.id} field={field} />
+            )}
 
-          {field.fieldType === "radio" && (
-            <RadioField key={field.id} field={field} />
-          )}
+            {field.fieldType === "radio" && (
+              <RadioField key={field.id} field={field} />
+            )}
+          </div>
         </div>
       </div>
     </div>
