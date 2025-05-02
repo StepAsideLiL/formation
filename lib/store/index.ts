@@ -105,6 +105,11 @@ const insertFormValueInFormDataAtom = atom(
   },
 );
 
+function NewSchema() {
+  const [, set] = useAtom(formSchemaAtom);
+  return set;
+}
+
 function NewFieldAfterFieldId() {
   const [, set] = useAtom(insertNewFieldAfterFieldIdAtom);
   return set;
@@ -122,6 +127,7 @@ const atoms = {
 };
 
 export const atomSet = {
+  NewSchema,
   NewFieldAfterFieldId,
   FormValueInFormData,
 };
