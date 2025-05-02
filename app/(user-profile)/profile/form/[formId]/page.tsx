@@ -1,5 +1,9 @@
+import SetNewFormSchema from "@/components/form-app/SetNewFormSchema";
 import date from "@/lib/date";
 import fetcher from "@/lib/fetcher";
+import { TFormSchema } from "@/lib/store";
+import { Route } from "next";
+import Link from "next/link";
 
 export default async function Page({
   params,
@@ -50,6 +54,14 @@ export default async function Page({
           </div>
         ))}
       </div>
+
+      <SetNewFormSchema
+        formSchema={JSON.parse(form.formSchema) as TFormSchema[]}
+      >
+        <Link href={`/profile/form/${form.id}/create-new-variant` as Route}>
+          Add New Variant
+        </Link>
+      </SetNewFormSchema>
     </main>
   );
 }
