@@ -1,15 +1,9 @@
 import Logo from "@/components/Logo";
-import { Metadata } from "next";
 import PublishBtn from "@/components/form-app/PublishBtn";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-
-export const metadata: Metadata = {
-  title: "Create New Form",
-  description: "Create new form by adding different types of fields",
-};
 
 export default async function Layout({
   children,

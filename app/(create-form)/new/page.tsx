@@ -1,6 +1,12 @@
 import AddFieldBtn from "@/components/form-app/AddFieldBtn";
 import FormFields from "@/components/form-app/FormFields";
 import TitleAndDescription from "@/components/form-app/TitleAndDescription";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Create New Form",
+  description: "Create new form by adding different types of fields",
+};
 
 export default function Page() {
   return (
