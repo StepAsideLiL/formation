@@ -2,8 +2,26 @@ import SetNewFormSchema from "@/components/form-app/SetNewFormSchema";
 import date from "@/lib/date";
 import fetcher from "@/lib/fetcher";
 import { TFormSchema } from "@/lib/store";
-import { Route } from "next";
+import { Metadata, Route } from "next";
 import Link from "next/link";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ formId: string }>;
+}): Promise<Metadata> {
+  const form = await fetcher.getFormInfoById((await params).formId);
+
+  if (!form) {
+    return {
+      title: "Invaild Form",
+    };
+  }
+
+  return {
+    title: `${form.title} variants`,
+  };
+}
 
 export default async function Page({
   params,
