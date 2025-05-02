@@ -74,6 +74,7 @@ export default async function Page({
       </div>
 
       <SetNewFormSchema
+        formId={form.id}
         formSchema={JSON.parse(form.formSchema) as TFormSchema[]}
       >
         <Link href={`/profile/form/${form.id}/create-new-variant` as Route}>
