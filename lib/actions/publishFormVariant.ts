@@ -48,7 +48,7 @@ export default async function publishFormVariant(
   if (form.formSchema === JSON.stringify(formSchema)) {
     return {
       error: {
-        message: "Form already published",
+        message: "This form already has this variant",
       },
       data: null,
     };
