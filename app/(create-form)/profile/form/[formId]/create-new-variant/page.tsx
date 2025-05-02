@@ -11,7 +11,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ formId: string }>;
 }): Promise<Metadata> {
-  const form = await fetcher.getFormById((await params).formId);
+  const form = await fetcher.getFormInfoById((await params).formId);
 
   if (!form) {
     return {
@@ -20,7 +20,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: form.title,
+    title: `Create New Variant For ${form.title}`,
   };
 }
 
