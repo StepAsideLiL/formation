@@ -32,6 +32,7 @@ export type TRadioMetadata = {
 };
 
 export type TForm = {
+  id: string;
   title: string;
   description: string;
 };
@@ -63,6 +64,7 @@ export const insertFormField = (): TFormSchema => {
 
 // Form title and description related atoms
 const formAtom = atomWithStorage<TForm>("form", {
+  id: "",
   title: "",
   description: "",
 });
