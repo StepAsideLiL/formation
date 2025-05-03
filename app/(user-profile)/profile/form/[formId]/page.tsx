@@ -44,9 +44,9 @@ export default async function Page({
     <main className="mx-auto w-full max-w-5xl space-y-10 py-5">
       <h1 className="text-2xl font-medium">From Variants</h1>
 
-      <div>
+      <div className="space-y-5">
         {form.formSchemaVariants.map((variant) => (
-          <div key={variant.id} className="space-y-2">
+          <div key={variant.id} className="space-y-2 border p-2">
             <div className="grid grid-cols-12">
               <span className="col-span-2">Variant Id</span>
               <span className="col-span-10">{variant.id}</span>
