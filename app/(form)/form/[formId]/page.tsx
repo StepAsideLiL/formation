@@ -8,16 +8,22 @@ export async function generateMetadata({
 }: {
   params: Promise<{ formId: string }>;
 }) {
-  const form = await fetcher.getFormById((await params).formId);
+  const { error, data } = await fetcher.getFormById((await params).formId);
 
-  if (!form) {
+  if (error) {
     return {
       title: "Invaild Form",
     };
   }
 
+  if (data) {
+    return {
+      title: data.formTitle,
+    };
+  }
+
   return {
-    title: form?.title,
+    title: "Unexpexted Error",
   };
 }
 
@@ -26,26 +32,37 @@ export default async function page({
 }: {
   params: Promise<{ formId: string }>;
 }) {
-  const form = await fetcher.getFormById((await params).formId);
+  const { error, data } = await fetcher.getFormById((await params).formId);
 
-  if (!form) {
+  if (error) {
     return (
       <main className="mx-auto w-full max-w-5xl py-10">
         <h1 className="text-muted-foreground text-center text-xl">
-          Invaild Form
+          Error Occured
         </h1>
+        <p className="text-muted-foreground text-center text-sm">
+          {error.message}
+        </p>
       </main>
     );
   }
 
-  const formSchema = JSON.parse(form.formSchema) as TFormSchema[];
+  if (data) {
+    return (
+      <main className="mx-auto w-full max-w-5xl space-y-5 py-5">
+        <h1 className="text-2xl">{data.formTitle}</h1>
+        <RenderRichText content={data.formDescription} />
+
+        <RenderForm formSchema={JSON.parse(data.formSchema) as TFormSchema[]} />
+      </main>
+    );
+  }
 
   return (
-    <main className="mx-auto w-full max-w-5xl space-y-5 py-5">
-      <h1 className="text-2xl">{form.title}</h1>
-      <RenderRichText content={form.description} />
-
-      <RenderForm formSchema={formSchema} />
+    <main className="mx-auto w-full max-w-5xl py-10">
+      <h1 className="text-muted-foreground text-center text-xl">
+        Invaild Form
+      </h1>
     </main>
   );
 }
