@@ -1,4 +1,5 @@
 import SetNewFormSchema from "@/components/form-app/SetNewFormSchema";
+import { Badge } from "@/components/ui/badge";
 import date from "@/lib/date";
 import fetcher from "@/lib/fetcher";
 import { TFormSchema } from "@/lib/store";
@@ -46,7 +47,7 @@ export default async function Page({
 
       <div className="space-y-5">
         {form.formSchemaVariants.map((variant) => (
-          <div key={variant.id} className="space-y-2 border p-2">
+          <div key={variant.id} className="space-y-2 border px-4 py-2">
             <div className="grid grid-cols-12">
               <span className="col-span-2">Variant Id</span>
               <span className="col-span-10">{variant.id}</span>
@@ -60,9 +61,17 @@ export default async function Page({
             <div className="grid grid-cols-12">
               <span className="col-span-2">Status</span>
               <span className="col-span-10">
-                {variant.formSchema === form.formSchema
-                  ? "Current"
-                  : "Outdated"}
+                <Badge
+                  variant={
+                    variant.formSchema === form.formSchema
+                      ? "default"
+                      : "secondary"
+                  }
+                >
+                  {variant.formSchema === form.formSchema
+                    ? "Current"
+                    : "Outdated"}
+                </Badge>
               </span>
             </div>
             <div className="grid grid-cols-12">
