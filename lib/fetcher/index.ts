@@ -19,6 +19,9 @@ const fetcher = {
       },
       include: {
         formSchemaVariants: {
+          orderBy: {
+            createdAt: "desc",
+          },
           include: {
             formData: true,
           },
