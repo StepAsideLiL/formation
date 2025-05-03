@@ -24,6 +24,10 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import submitForm from "@/lib/actions/submitForm";
+import { useState } from "react";
+import Icons from "@/lib/icons";
+import { toast } from "sonner";
 
 export function RenderForm({
   formSchema,
@@ -34,6 +38,8 @@ export function RenderForm({
   currentFromSchemaVariantId: string;
   className?: string;
 }) {
+  const [loading, setLoading] = useState(false);
+
   const form = useForm({
     defaultValues: formSchema.reduce(
       (acc, curr) => {
@@ -42,8 +48,23 @@ export function RenderForm({
       },
       {} as Record<string, string>,
     ),
-    onSubmit: (values) => {
-      console.log(values, currentFromSchemaVariantId);
+    onSubmit: async (values) => {
+      setLoading(true);
+
+      const { error, data } = await submitForm(
+        values.value,
+        currentFromSchemaVariantId,
+      );
+
+      if (error) {
+        toast.error(error.message);
+        setLoading(false);
+      }
+
+      if (data) {
+        toast.success("Form Submitted Successfully");
+        setLoading(false);
+      }
     },
   });
 
@@ -266,8 +287,19 @@ export function RenderForm({
 
       <form.Subscribe
         children={() => (
-          <Button type="submit" className="w-full">
-            Submit
+          <Button type="submit" disabled={loading}>
+            {loading ? (
+              <>
+                <Icons.Loading
+                  className="-ms-1 animate-spin"
+                  size={16}
+                  aria-hidden="true"
+                />
+                Submitting
+              </>
+            ) : (
+              "Submit"
+            )}
           </Button>
         )}
       />
