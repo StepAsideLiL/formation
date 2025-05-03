@@ -27,6 +27,7 @@ import {
   useSortable,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import { CSS } from "@dnd-kit/utilities";
 import Icons from "@/lib/icons";
 import { Button } from "@/components/ui/button";
@@ -55,6 +56,7 @@ export default function FormFields() {
       sensors={sensors}
       collisionDetection={closestCenter}
       onDragEnd={handleDragEnd}
+      modifiers={[restrictToVerticalAxis]}
     >
       <SortableContext
         items={formSchema.map((f) => f.id as UniqueIdentifier)}
