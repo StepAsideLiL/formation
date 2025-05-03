@@ -53,7 +53,10 @@ export default async function page({
         <h1 className="text-2xl">{data.formTitle}</h1>
         <RenderRichText content={data.formDescription} />
 
-        <RenderForm formSchema={JSON.parse(data.formSchema) as TFormSchema[]} />
+        <RenderForm
+          formSchema={JSON.parse(data.formSchema) as TFormSchema[]}
+          currentFromSchemaVariantId={data.currentFromSchemaVariantId}
+        />
       </main>
     );
   }

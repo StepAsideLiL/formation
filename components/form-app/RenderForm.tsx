@@ -27,9 +27,11 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 export function RenderForm({
   formSchema,
+  currentFromSchemaVariantId,
   className,
 }: {
   formSchema: TFormSchema[];
+  currentFromSchemaVariantId: string;
   className?: string;
 }) {
   const form = useForm({
@@ -41,7 +43,7 @@ export function RenderForm({
       {} as Record<string, string>,
     ),
     onSubmit: (values) => {
-      console.log(values);
+      console.log(values, currentFromSchemaVariantId);
     },
   });
 
