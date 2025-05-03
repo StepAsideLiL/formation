@@ -54,6 +54,24 @@ export default async function publishFormVariant(
     };
   }
 
+  const updateForm = await prisma.form.update({
+    where: {
+      id: formId,
+    },
+    data: {
+      formSchema: JSON.stringify(formSchema),
+    },
+  });
+
+  if (!updateForm) {
+    return {
+      error: {
+        message: "Failed to update form schema!",
+      },
+      data: null,
+    };
+  }
+
   const formSchemaVariant = await prisma.formSchemaVariant.create({
     data: {
       formSchema: JSON.stringify(formSchema),
