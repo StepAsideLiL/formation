@@ -4,6 +4,7 @@ import { cache } from "react";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { TResponse } from "@/lib/types";
+import getVariantForResponse from "./getVariantForResponse";
 
 const fetcher = {
   getFormById: cache(
@@ -107,6 +108,7 @@ const fetcher = {
       data: userForms,
     };
   }),
+  getVariantForResponse,
 };
 
 export default fetcher;
