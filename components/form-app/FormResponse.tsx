@@ -132,7 +132,6 @@ export default function FormResponse({
                 data-state={row.getIsSelected() && "selected"}
               >
                 {row.getVisibleCells().map((cell) => {
-                  console.log(cell.getContext());
                   if (cell.column.columnDef.id === "action") {
                     return (
                       <TableCell key={cell.id} className="border">
