@@ -15,7 +15,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../ui/table";
+} from "@/components/ui/table";
 
 export default function FormResponse({
   form,
@@ -31,7 +31,6 @@ export default function FormResponse({
     },
     {} as Record<string, string>,
   );
-
   const data = form.formData.map(
     (data) => JSON.parse(data) as Record<string, string>,
   );
@@ -42,8 +41,10 @@ export default function FormResponse({
     ...fields.map((field) =>
       columnHelper.accessor(field, {
         id: field,
-        header: fieldLabels[field],
-        cell: (info) => data[info.row.index][field],
+        header: () => <span className="font-black">{fieldLabels[field]}</span>,
+        cell: (info) => {
+          return data[info.row.index][field];
+        },
       }),
     ),
   ];
@@ -62,7 +63,7 @@ export default function FormResponse({
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <TableHead key={header.id}>
+                  <TableHead key={header.id} className="border">
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -75,6 +76,7 @@ export default function FormResponse({
             </TableRow>
           ))}
         </TableHeader>
+
         <TableBody>
           {table.getRowModel().rows?.length ? (
             table.getRowModel().rows.map((row) => (
@@ -83,7 +85,7 @@ export default function FormResponse({
                 data-state={row.getIsSelected() && "selected"}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
+                  <TableCell key={cell.id} className="border">
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
