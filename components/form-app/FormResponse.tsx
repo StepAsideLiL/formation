@@ -16,6 +16,9 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
+import Icons from "@/lib/icons";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export default function FormResponse({
   form,
@@ -38,6 +41,13 @@ export default function FormResponse({
   const columnHelper = createColumnHelper<Record<string, string>>();
 
   const columns = [
+    columnHelper.accessor("Select", {
+      id: "select",
+      header: () => <Checkbox className="hover:cursor-pointer" />,
+      cell: () => {
+        return <Checkbox className="hover:cursor-pointer" />;
+      },
+    }),
     ...fields.map((field) =>
       columnHelper.accessor(field, {
         id: field,
@@ -47,6 +57,17 @@ export default function FormResponse({
         },
       }),
     ),
+    columnHelper.accessor("Action", {
+      id: "action",
+      header: () => null,
+      cell: () => {
+        return (
+          <Button variant={"outline"} size={"icon"}>
+            <Icons.DotMenuVertical />
+          </Button>
+        );
+      },
+    }),
   ];
 
   const table = useReactTable({
@@ -62,6 +83,32 @@ export default function FormResponse({
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
+                if (header.id === "action") {
+                  return (
+                    <TableHead key={header.id} className="w-10 border">
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
+                    </TableHead>
+                  );
+                }
+
+                if (header.id === "select") {
+                  return (
+                    <TableHead key={header.id} className="w-8 border">
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
+                    </TableHead>
+                  );
+                }
+
                 return (
                   <TableHead key={header.id} className="border">
                     {header.isPlaceholder
@@ -84,11 +131,28 @@ export default function FormResponse({
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
               >
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id} className="border">
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
-                ))}
+                {row.getVisibleCells().map((cell) => {
+                  console.log(cell.getContext());
+                  if (cell.column.columnDef.id === "action") {
+                    return (
+                      <TableCell key={cell.id} className="border">
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext(),
+                        )}
+                      </TableCell>
+                    );
+                  }
+
+                  return (
+                    <TableCell key={cell.id} className="border">
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
+                    </TableCell>
+                  );
+                })}
               </TableRow>
             ))
           ) : (
