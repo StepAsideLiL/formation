@@ -34,9 +34,12 @@ export default function FormResponse({
     },
     {} as Record<string, string>,
   );
-  const data = form.formData.map(
-    (data) => JSON.parse(data) as Record<string, string>,
-  );
+  const formSubmissionData = form.formSubmissionData.map((data) => {
+    return {
+      formDataId: data.formDataId,
+      fromData: JSON.parse(data.fromData) as Record<string, string>,
+    };
+  });
 
   const columnHelper = createColumnHelper<Record<string, string>>();
 
@@ -53,16 +56,20 @@ export default function FormResponse({
         id: field,
         header: () => <span className="font-black">{fieldLabels[field]}</span>,
         cell: (info) => {
-          return data[info.row.index][field];
+          return formSubmissionData[info.row.index].fromData[field];
         },
       }),
     ),
     columnHelper.accessor("Action", {
       id: "action",
       header: () => null,
-      cell: () => {
+      cell: (info) => {
         return (
-          <Button variant={"outline"} size={"icon"}>
+          <Button
+            variant={"outline"}
+            size={"icon"}
+            onClick={() => console.log(formSubmissionData[info.row.index])}
+          >
             <Icons.DotMenuVertical />
           </Button>
         );
@@ -71,7 +78,7 @@ export default function FormResponse({
   ];
 
   const table = useReactTable({
-    data,
+    data: formSubmissionData.map((d) => d.fromData),
     columns,
     getCoreRowModel: getCoreRowModel(),
   });

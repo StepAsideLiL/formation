@@ -6,7 +6,10 @@ export type TGetVariantForResponseData = {
   formId: string;
   currentVariantId: string;
   formSchema: string;
-  formData: string[];
+  formSubmissionData: {
+    formDataId: string;
+    fromData: string;
+  }[];
 };
 
 const getVariantForResponse = cache(
@@ -32,7 +35,12 @@ const getVariantForResponse = cache(
       };
     }
 
-    const formData = variant.formData.map((data) => data.formData);
+    const formSubmissionData = variant.formData.map((data) => {
+      return {
+        formDataId: data.id,
+        fromData: data.formData,
+      };
+    });
 
     return {
       error: null,
@@ -40,7 +48,7 @@ const getVariantForResponse = cache(
         formId: variant.form.id,
         currentVariantId: variant.id,
         formSchema: variant.form.formSchema,
-        formData,
+        formSubmissionData,
       },
     };
   },
