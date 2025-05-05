@@ -3,6 +3,7 @@ import * as L from "lucide-react";
 const Icons = {
   Checkbox: L.SquareCheck,
   Choice: L.CircleDot,
+  DotMenuVertical: L.EllipsisVertical,
   Grip: L.GripVertical,
   Loading: L.Loader,
   OneLine: L.Minus,
