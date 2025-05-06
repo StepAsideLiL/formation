@@ -1,6 +1,6 @@
 import { RenderForm } from "@/components/form-app/RenderForm";
 import RenderRichText from "@/components/richtext-app/RenderRichText";
-import fetcher from "@/lib/fetcher";
+import db from "@/lib/db";
 import { TFormSchema } from "@/lib/store";
 
 export async function generateMetadata({
@@ -8,7 +8,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ formId: string }>;
 }) {
-  const { error, data } = await fetcher.getFormById((await params).formId);
+  const { error, data } = await db.query.getFormById((await params).formId);
 
   if (error) {
     return {
@@ -32,7 +32,7 @@ export default async function page({
 }: {
   params: Promise<{ formId: string }>;
 }) {
-  const { error, data } = await fetcher.getFormById((await params).formId);
+  const { error, data } = await db.query.getFormById((await params).formId);
 
   if (error) {
     return (

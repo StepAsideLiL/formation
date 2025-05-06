@@ -1,6 +1,5 @@
 import FormResponse from "@/components/form-app/FormResponse";
-import fetcher from "@/lib/fetcher";
-import { TFormSchema } from "@/lib/store";
+import db from "@/lib/db";
 import { Metadata } from "next";
 
 export async function generateMetadata({
@@ -8,7 +7,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ variantId: string }>;
 }): Promise<Metadata> {
-  const { error, data } = await fetcher.getVariantForResponse(
+  const { error, data } = await db.query.getVariantForResponse(
     (await params).variantId,
   );
 
@@ -34,7 +33,7 @@ export default async function Page({
 }: {
   params: Promise<{ variantId: string }>;
 }) {
-  const { error, data: form } = await fetcher.getVariantForResponse(
+  const { error, data: form } = await db.query.getVariantForResponse(
     (await params).variantId,
   );
 

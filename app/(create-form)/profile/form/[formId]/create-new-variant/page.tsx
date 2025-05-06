@@ -1,7 +1,7 @@
 import AddFieldBtn from "@/components/form-app/AddFieldBtn";
 import FormFields from "@/components/form-app/FormFields";
 import { auth } from "@/lib/auth";
-import fetcher from "@/lib/fetcher";
+import db from "@/lib/db";
 import { Metadata } from "next";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
@@ -11,7 +11,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ formId: string }>;
 }): Promise<Metadata> {
-  const form = await fetcher.getFormInfoById((await params).formId);
+  const form = await db.query.getFormInfoById((await params).formId);
 
   if (!form) {
     return {
@@ -37,7 +37,7 @@ export default async function Page({
     redirect("/");
   }
 
-  const form = await fetcher.getFormInfoById((await params).formId);
+  const form = await db.query.getFormInfoById((await params).formId);
 
   if (!form) {
     return (

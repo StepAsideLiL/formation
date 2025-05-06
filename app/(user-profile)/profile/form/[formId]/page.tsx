@@ -2,7 +2,7 @@ import SetNewFormSchema from "@/components/form-app/SetNewFormSchema";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import date from "@/lib/date";
-import fetcher from "@/lib/fetcher";
+import db from "@/lib/db";
 import { TFormSchema } from "@/lib/store";
 import { Metadata, Route } from "next";
 import Link from "next/link";
@@ -12,7 +12,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ formId: string }>;
 }): Promise<Metadata> {
-  const form = await fetcher.getFormInfoById((await params).formId);
+  const form = await db.query.getFormInfoById((await params).formId);
 
   if (!form) {
     return {
@@ -30,7 +30,7 @@ export default async function Page({
 }: {
   params: Promise<{ formId: string }>;
 }) {
-  const form = await fetcher.getFormInfoById((await params).formId);
+  const form = await db.query.getFormInfoById((await params).formId);
 
   if (!form) {
     return (

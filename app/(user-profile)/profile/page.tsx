@@ -1,5 +1,5 @@
 import date from "@/lib/date";
-import fetcher from "@/lib/fetcher";
+import db from "@/lib/db";
 import { Metadata, Route } from "next";
 import Link from "next/link";
 
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 export default async function page() {
-  const forms = await fetcher.getSignedInUserForm();
+  const forms = await db.query.getSignedInUserForm();
 
   return (
     <main className="mx-auto w-full max-w-5xl py-5">
