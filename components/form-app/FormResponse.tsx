@@ -1,6 +1,6 @@
 "use client";
 
-import { TGetVariantForResponseData } from "@/lib/db/getVariantForResponse";
+import { TGetVariantForResponseData } from "@/lib/db";
 import { TFormSchema } from "@/lib/store";
 import {
   createColumnHelper,
