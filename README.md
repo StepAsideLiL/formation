@@ -1,3 +1,3 @@
-# Formation
+# Formation (In Progress)
 
-Formation is a web application which lets user to create form.
+Formation is a polling and survey form.
